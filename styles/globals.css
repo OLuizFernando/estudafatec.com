@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Konsens";
+  src: url("../assets/fonts/KonsensRegular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Konsens";
+  src: url("../assets/fonts/KonsensSemibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+.konsens {
+  font-family: "Konsens", sans-serif;
+}
