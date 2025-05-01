@@ -1,10 +1,13 @@
 import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
 
 function Home() {
   return (
     <>
-      <Navbar />
-      <h1>Home</h1>
+      <div className="h-screen flex flex-col justify-center items-center">
+        <Navbar />
+        <HeroSection />
+      </div>
     </>
   );
 }
