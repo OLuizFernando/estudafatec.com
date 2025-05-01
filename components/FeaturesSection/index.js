@@ -22,12 +22,15 @@ function FeaturesSection() {
 
   return (
     <>
-      <div className="flex justify-center bg-gradient-to-bl from-[#922020] to-red-800 w-full text-white">
-        <div className="flex flex-col items-center max-w-screen-xl md:mx-20 px-5 pt-15 md:py-25 md:pt-auto">
+      <div
+        id="recursos"
+        className="flex justify-center bg-gradient-to-br from-[#7e1a1a] to-[#a72929] w-full text-white"
+      >
+        <div className="flex flex-col items-center max-w-screen-xl md:mx-20 px-5 py-15 md:py-25 md:pt-auto">
           <h2 className="text-4xl md:text-5xl md:w-3xl font-bold text-center mb-15 md:mb-20">
             Estes recursos vão facilitar a sua vida de vestibulando!
           </h2>
-          <div className="flex flex-col md:flex-row text-center px-7 md:px-10">
+          <div className="flex flex-col md:flex-row text-center px-7 md:px-10 mb-5 md:mb-20">
             {itemsData.map((item) => (
               <div
                 key={item.id}
@@ -39,6 +42,12 @@ function FeaturesSection() {
               </div>
             ))}
           </div>
+          <a
+            href="#planos"
+            className="text-[#922020] shadow-lg bg-white hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-white/50 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs"
+          >
+            Vou ser aprovado!
+          </a>
         </div>
       </div>
     </>
