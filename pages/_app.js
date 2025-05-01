@@ -6,7 +6,7 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>
-          EstudaFatec.com - A plataforma de estudos dedicada à Fatec
+          EstudaFatec.com - A plataforma de estudos focada no Vestibular Fatec
         </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
