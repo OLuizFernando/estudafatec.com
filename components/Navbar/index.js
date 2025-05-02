@@ -3,8 +3,8 @@ import { usePathname } from "next/navigation";
 function Navbar() {
   const navItems = [
     { id: 0, text: "Recursos", href: "/#recursos" },
-    { id: 1, text: "Planos", href: "/#planos" },
-    { id: 2, text: "Sobre", href: "/#sobre" },
+    { id: 1, text: "Feedbacks", href: "/#feedbacks" },
+    { id: 2, text: "Planos", href: "/#planos" },
     { id: 3, text: "Contato", href: "#contato" },
   ];
 
@@ -55,8 +55,8 @@ function Navbar() {
                   <a
                     href={item.href}
                     className={`
-                      block py-2 px-3 rounded-md md:py-2 md:px-4 text-white
-                      ${pathname === item.href ? "bg-neutral-800" : "hover:bg-neutral-800"}
+                      block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-white
+                      ${pathname === item.href ? "shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10" : "hover:shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] hover:bg-black/10"}
                     `}
                     aria-current="page"
                   >
