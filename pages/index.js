@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import FeedbacksSection from "@/components/FeedbacksSection";
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
         <HeroSection />
       </div>
       <FeaturesSection />
+      <FeedbacksSection />
     </>
   );
 }
