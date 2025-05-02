@@ -34,7 +34,7 @@ function FeaturesSection() {
             {itemsData.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col justify-center items-center md:px-7 mb-10 md:mb-auto mx-3 flex-1 rounded-2xl shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10 px-7 py-9"
+                className="flex flex-col h-full justify-center items-center md:px-7 mb-10 md:mb-auto mx-3 flex-1 rounded-2xl shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10 px-7 py-9"
               >
                 <img width="95" className="mb-5" src={item.iconSrc} />
                 <h3 className="text-3xl font-semibold mb-4">{item.title}</h3>
