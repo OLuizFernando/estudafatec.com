@@ -44,7 +44,7 @@ function FeaturesSection() {
           </div>
           <a
             href="#planos"
-            className="text-[#922020] shadow-lg bg-white hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-white/50 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs"
+            className="text-[#922020] shadow-2xl bg-white hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-white/50 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs"
           >
             Vou ser aprovado!
           </a>
