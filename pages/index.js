@@ -6,7 +6,7 @@ import FeedbacksSection from "components/FeedbacksSection";
 function Home() {
   return (
     <>
-      <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-white to-neutral-300">
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-white to-neutral-300">
         <Navbar />
         <HeroSection />
       </div>
