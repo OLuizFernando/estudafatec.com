@@ -2,6 +2,7 @@ import Navbar from "components/Navbar";
 import HeroSection from "components/HeroSection";
 import FeaturesSection from "components/FeaturesSection";
 import FeedbacksSection from "components/FeedbacksSection";
+import PlansSection from "components/PlansSection";
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       </div>
       <FeaturesSection />
       <FeedbacksSection />
+      <PlansSection />
     </>
   );
 }
