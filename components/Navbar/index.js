@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 function Navbar() {
   const navItems = [
     { id: 0, text: "Recursos", href: "/#recursos" },
-    { id: 1, text: "Feedbacks", href: "/#feedbacks" },
+    { id: 1, text: "Depoimentos", href: "/#depoimentos" },
     { id: 2, text: "Planos", href: "/#planos" },
     { id: 3, text: "Contato", href: "#contato" },
   ];

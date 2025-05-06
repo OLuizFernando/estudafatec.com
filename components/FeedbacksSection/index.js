@@ -29,7 +29,7 @@ function FeedbacksSection() {
   return (
     <>
       <div
-        id="feedbacks"
+        id="depoimentos"
         className="flex justify-center bg-gradient-to-br from-[#3d3d3d] to-[#2e2e2e] w-full text-white"
       >
         <div className="flex flex-col items-center max-w-screen-xl mx-5 pt-15 pb-10 md:pt-25 md:pb-10">
