@@ -6,7 +6,7 @@ function PlansSection() {
         className="flex justify-center bg-gradient-to-br from-white to-neutral-300 w-full text-[#2e2e2e]"
       >
         <div className="flex flex-col items-center max-w-screen-xl md:mx-20 px-5 py-15 md:py-25 md:pt-auto">
-          <h2 className="text-4xl md:text-5xl md:w-3xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Planos
           </h2>
           <p className="text-2xl md:text-3xl text-center mb-15 md:mb-20 text-neutral-600">

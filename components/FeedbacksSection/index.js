@@ -33,7 +33,7 @@ function FeedbacksSection() {
         className="flex justify-center bg-gradient-to-br from-[#3d3d3d] to-[#2e2e2e] w-full text-white"
       >
         <div className="flex flex-col items-center max-w-screen-xl mx-5 pt-15 pb-10 md:pt-25 md:pb-10">
-          <h2 className="text-4xl lg:text-5xl lg:w-3xl font-bold text-center mb-15 lg:mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-15 lg:mb-20">
             Depoimentos dos aprovados
           </h2>
           <div className="flex flex-col lg:flex-row text-center mb-5 lg:mb-15">
