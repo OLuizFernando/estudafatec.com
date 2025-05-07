@@ -49,7 +49,7 @@ function Navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
           >
-            <ul className="flex flex-col text-lg p-4 md:p-0 mt-4 font-medium border border-neutral-700 rounded-lg bg-[#2e2e2e] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+            <ul className="flex flex-col text-lg p-4 md:p-0 mt-4 font-medium border border-neutral-700 rounded-lg bg-[#2e2e2e] md:space-x-4 lg:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <a
