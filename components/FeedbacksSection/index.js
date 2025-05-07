@@ -54,7 +54,7 @@ function FeedbacksSection() {
                   />
                   <div className="flex flex-col text-start">
                     <p className="text-xl font-bold mb-1">{item.name}</p>
-                    <p className="font-light">{item.degree}</p>
+                    <p className="text-neutral-600">{item.degree}</p>
                   </div>
                 </div>
               </div>

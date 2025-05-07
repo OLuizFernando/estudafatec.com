@@ -6,7 +6,7 @@ function HeroSection() {
           <h1 className="text-4xl md:text-5xl lg:6xl xl:text-7xl font-bold text-start mb-5">
             A Plataforma de Estudos Focada no Vestibular Fatec
           </h1>
-          <p className="text-2xl xl:text-3xl mb-5 lg:mb-8">
+          <p className="text-2xl xl:text-3xl text-neutral-600 mb-5 lg:mb-8">
             Saia na frente com nossos recursos e materiais pensados para você!
           </p>
           <a
