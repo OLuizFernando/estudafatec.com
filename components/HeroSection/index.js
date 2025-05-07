@@ -1,7 +1,7 @@
 function HeroSection() {
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-center items-center max-w-screen-xl mx-20 md:p-5">
+      <div className="flex flex-col md:flex-row justify-center items-center max-w-screen-xl mx-20 md:p-5 mt-10 md:mt-0">
         <div className="flex flex-col w-auto md:w-fit mb-15 md:mb-0 text-[#2e2e2e] me-0 md:me-10 lg:me-25">
           <h1 className="text-4xl md:text-5xl lg:6xl xl:text-7xl font-bold text-start mb-5">
             A Plataforma de Estudos Focada no Vestibular Fatec
