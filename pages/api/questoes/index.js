@@ -1,6 +1,6 @@
 import { createRouter } from "next-connect";
 import controller from "infra/controller";
-import database from "infra/database";
+import mongo from "infra/mongo";
 
 const router = createRouter();
 
@@ -31,6 +31,6 @@ async function getHandler(request, response) {
   if (numero) filtro.numero = parseInt(numero, 10);
   if (disciplina) filtro.disciplina = disciplinaMap[disciplina];
 
-  const provasFound = await database.find(filtro);
+  const provasFound = await mongo.query(filtro);
   response.status(200).json(provasFound);
 }
