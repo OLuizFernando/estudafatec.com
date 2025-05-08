@@ -5,7 +5,6 @@ function Navbar() {
     { id: 0, text: "Recursos", href: "/#recursos" },
     { id: 1, text: "Depoimentos", href: "/#depoimentos" },
     { id: 2, text: "Planos", href: "/#planos" },
-    { id: 3, text: "Contato", href: "#contato" },
   ];
 
   const pathname = usePathname();
@@ -64,6 +63,14 @@ function Navbar() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/login"
+                  className="block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:px-3.5 md:hover:px-4.5 transition-all duration-200 ease-in-out"
+                >
+                  Entrar
+                </a>
+              </li>
             </ul>
           </div>
         </div>
