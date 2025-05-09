@@ -1,33 +1,35 @@
-import { Pool } from "pg";
+import { Client } from "pg";
 import { ServiceError } from "./errors.js";
 
-const pool = new Pool({
-  host: process.env.POSTGRES_HOST,
-  port: process.env.POSTGRES_PORT,
-  user: process.env.POSTGRES_USER,
-  database: process.env.POSTGRES_DB,
-  password: process.env.POSTGRES_PASSWORD,
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : false,
-});
-
 async function query(queryObject) {
+  let client;
   try {
-    const result = await pool.query(queryObject);
+    client = await getDb();
+    const result = await client.query(queryObject);
     return result;
   } catch (error) {
     const serviceErrorObject = new ServiceError({
-      message: "Erro na conexão com o Postgres ou na Query.",
+      message: "Erro na conexão com Banco ou na Query.",
       cause: error,
     });
     throw serviceErrorObject;
+  } finally {
+    await client?.end();
   }
 }
 
 async function getDb() {
-  return pool;
+  const client = new Client({
+    host: process.env.POSTGRES_HOST,
+    port: process.env.POSTGRES_PORT,
+    user: process.env.POSTGRES_USER,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+    ssl: process.env.NODE_ENV === "production" ? true : false,
+  });
+
+  await client.connect();
+  return client;
 }
 
 const postgres = {
