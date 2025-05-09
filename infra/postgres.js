@@ -30,9 +30,9 @@ async function getDb() {
   return pool;
 }
 
-const database = {
+const postgres = {
   query,
   getDb,
 };
 
-export default database;
+export default postgres;
