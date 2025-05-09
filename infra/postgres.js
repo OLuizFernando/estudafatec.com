@@ -26,13 +26,13 @@ async function query(queryObject) {
   }
 }
 
-async function getNewClient() {
+async function getDb() {
   return pool;
 }
 
 const database = {
   query,
-  getNewClient,
+  getDb,
 };
 
 export default database;

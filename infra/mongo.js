@@ -4,7 +4,7 @@ import { ServiceError } from "./errors.js";
 let cachedClient = null;
 let cachedDb = null;
 
-async function getNewClient() {
+async function getDb() {
   if (cachedClient && cachedDb) {
     return cachedDb;
   }
@@ -35,7 +35,7 @@ async function getNewClient() {
 
 async function query(queryObject) {
   try {
-    const db = await getNewClient();
+    const db = await getDb();
     const collection = db.collection("questoes");
     return await collection.find(queryObject).toArray();
   } catch (error) {
@@ -48,7 +48,7 @@ async function query(queryObject) {
 
 const mongo = {
   query,
-  getNewClient,
+  getDb,
 };
 
 export default mongo;
