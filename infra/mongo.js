@@ -4,7 +4,7 @@ import { ServiceError } from "./errors.js";
 let cachedClient = null;
 let cachedDb = null;
 
-async function connect() {
+async function getNewClient() {
   if (cachedClient && cachedDb) {
     return cachedDb;
   }
@@ -19,7 +19,7 @@ async function connect() {
     });
 
     await client.connect();
-    const db = client.db("api-estudafatec");
+    const db = client.db("api-estudafatec").admin();
 
     cachedClient = client;
     cachedDb = db;
@@ -35,7 +35,7 @@ async function connect() {
 
 async function query(queryObject) {
   try {
-    const db = await connect();
+    const db = await getNewClient();
     const collection = db.collection("questoes");
     return await collection.find(queryObject).toArray();
   } catch (error) {
@@ -48,6 +48,7 @@ async function query(queryObject) {
 
 const mongo = {
   query,
+  getNewClient,
 };
 
 export default mongo;
