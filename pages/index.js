@@ -7,7 +7,7 @@ import PlansSection from "components/PlansSection";
 function Home() {
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-white to-neutral-300">
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-white to-neutral-300 pb-10 md:pb-0">
         <Navbar />
         <HeroSection />
       </div>
