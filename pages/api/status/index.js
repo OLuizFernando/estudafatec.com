@@ -25,7 +25,7 @@ async function getHandler(request, response) {
 
   // Mongo Status
   const mongoClient = await mongo.getDb();
-  const mongoStatus = await mongoClient.serverStatus();
+  const mongoStatus = await mongoClient.admin().serverStatus();
 
   const mongoVersion = mongoStatus.version;
   const openedMongoConnections = mongoStatus.connections.current;

@@ -19,7 +19,7 @@ async function getDb() {
     });
 
     await client.connect();
-    const db = client.db("api-estudafatec").admin();
+    const db = client.db("api-estudafatec");
 
     cachedClient = client;
     cachedDb = db;
