@@ -1,6 +1,19 @@
 import mongo from "infra/mongo.js";
+import { ValidationError } from "infra/errors";
 
-async function filter({ ano, semestre, numero, disciplina }) {
+async function filter(queryParams) {
+  const allowedParams = ["ano", "semestre", "numero", "disciplina"];
+  const unknownParams = Object.keys(queryParams).filter(
+    (param) => !allowedParams.includes(param),
+  );
+
+  if (unknownParams.length > 0) {
+    throw new ValidationError({
+      message: `Parâmetros inválidos detectados: ${unknownParams.join(", ")}.`,
+      action: `Use apenas parâmetros permitidos: ano, semestre, numero, disciplina.`,
+    });
+  }
+
   const disciplinaMap = {
     biologia: "Biologia",
     fisica: "Física",
@@ -16,10 +29,12 @@ async function filter({ ano, semestre, numero, disciplina }) {
 
   const filter = {};
 
-  if (ano) filter.ano = parseInt(ano, 10);
-  if (semestre) filter.semestre = parseInt(semestre, 10);
-  if (numero) filter.numero = parseInt(numero, 10);
-  if (disciplina) filter.disciplina = disciplinaMap[disciplina];
+  if (queryParams.ano) filter.ano = parseInt(queryParams.ano, 10);
+  if (queryParams.semestre)
+    filter.semestre = parseInt(queryParams.semestre, 10);
+  if (queryParams.numero) filter.numero = parseInt(queryParams.numero, 10);
+  if (queryParams.disciplina)
+    filter.disciplina = disciplinaMap[queryParams.disciplina];
 
   return await mongo.query(filter);
 }
