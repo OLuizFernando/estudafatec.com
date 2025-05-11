@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 function PlansSection() {
   const plans = [
     {
@@ -68,7 +70,13 @@ function PlansSection() {
                 <ul className="text-xl md:text-2xl text-neutral-600 text-start mb-7">
                   {plan.features.map((feature) => (
                     <li key={feature.id} className="flex items-center mb-3">
-                      <img className="size-7 me-3" src={feature.icon} />
+                      <Image
+                        width="95"
+                        height="95"
+                        className="size-7 me-3"
+                        src={feature.icon}
+                        alt={feature.text}
+                      />
                       {feature.text}
                     </li>
                   ))}

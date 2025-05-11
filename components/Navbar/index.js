@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 function Navbar() {
@@ -13,11 +14,11 @@ function Navbar() {
     <>
       <nav className="bg-[#2e2e2e] bg-opacity-5 fixed w-full z-20 top-0 start-0">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-5">
-          <a href="/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <span className="self-center text-2xl md:text-3xl whitespace-nowrap text-white konsens font-semibold">
               EstudaFatec.com
             </span>
-          </a>
+          </Link>
           <div className="flex">
             <button
               data-collapse-toggle="navbar-sticky"
@@ -64,12 +65,12 @@ function Navbar() {
                 </li>
               ))}
               <li>
-                <a
+                <Link
                   href="/login"
                   className="block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:px-3.5 md:hover:px-4.5 transition-all duration-200 ease-in-out"
                 >
                   Entrar
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -77,7 +78,10 @@ function Navbar() {
       </nav>
       <div className="h-20"></div>
 
-      <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"
+        defer
+      ></script>
     </>
   );
 }

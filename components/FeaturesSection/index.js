@@ -1,20 +1,22 @@
+import Image from "next/image";
+
 function FeaturesSection() {
   const itemsData = [
     {
       id: 0,
-      iconSrc: "icons/questoes.png",
+      iconSrc: "/icons/questoes.png",
       title: "Banco de Questões",
       text: "Acesse uma ampla coleção de questões.",
     },
     {
       id: 1,
-      iconSrc: "icons/estatistica.png",
+      iconSrc: "/icons/estatistica.png",
       title: "Estatísticas do Aluno",
       text: "Acompanhseu progresso e desempenho.",
     },
     {
       id: 2,
-      iconSrc: "icons/plano.png",
+      iconSrc: "/icons/plano.png",
       title: "Planos de Estudo",
       text: "Organize sua rotina de estudos de forma eficaz.",
     },
@@ -36,7 +38,13 @@ function FeaturesSection() {
                 key={item.id}
                 className="flex flex-col h-full justify-center items-center md:px-7 mb-10 md:mb-auto mx-3 flex-1 rounded-2xl shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10 px-7 py-9"
               >
-                <img width="95" className="mb-5" src={item.iconSrc} />
+                <Image
+                  width="95"
+                  height="95"
+                  className="mb-5"
+                  src={item.iconSrc}
+                  alt={`ícone ${item.title}`}
+                />
                 <h3 className="text-3xl font-semibold mb-4">{item.title}</h3>
                 <p className="text-xl">{item.text}</p>
               </div>
