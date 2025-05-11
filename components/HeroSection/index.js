@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 function HeroSection() {
   return (
     <>
@@ -17,7 +19,13 @@ function HeroSection() {
           </a>
         </div>
         <div className="flex flex-row md:flex-col w-auto max-w-md md:w-fit">
-          <img src="/home/student.png" alt="Estudante" />
+          <Image
+            width="1000"
+            height="1000"
+            src="/home/student.png"
+            alt="Estudante"
+            priority
+          />
         </div>
       </div>
     </>
