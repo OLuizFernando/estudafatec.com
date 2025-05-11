@@ -18,6 +18,8 @@ export default function MyApp({ Component, pageProps }) {
         />
         <meta name="theme-color" content="#2e2e2e" />
 
+        <link rel="canonical" href="https://www.estudafatec.com" />
+
         {/* Open Graph */}
         <meta
           property="og:title"
