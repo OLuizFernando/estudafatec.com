@@ -32,7 +32,8 @@
     "next-connect": "^1.0.0",
     "node": "^18.18.0",
     "node-pg-migrate": "^7.9.1",
-    "pg": "^8.15.6"
+    "pg": "^8.15.6",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
