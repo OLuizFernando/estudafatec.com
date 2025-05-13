@@ -37,7 +37,7 @@ describe("GET /api/users/[username]", () => {
         name: "Same Case",
         username: "same-case",
         email: "samecase@example.com",
-        password: response2Body.password,
+        hash: response2Body.hash,
         created_at: response2Body.created_at,
         updated_at: response2Body.updated_at,
       });
@@ -75,7 +75,7 @@ describe("GET /api/users/[username]", () => {
         name: "Case Mismatch",
         username: "case-mismatch",
         email: "casemismatch@example.com",
-        password: response2Body.password,
+        hash: response2Body.hash,
         created_at: response2Body.created_at,
         updated_at: response2Body.updated_at,
       });

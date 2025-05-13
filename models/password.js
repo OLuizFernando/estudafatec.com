@@ -5,8 +5,8 @@ async function hash(password) {
   return bcryptjs.hash(password, rounds);
 }
 
-async function compare(providedPassword, storedPassword) {
-  return bcryptjs.compare(providedPassword, storedPassword);
+async function compare(password, hash) {
+  return bcryptjs.compare(password, hash);
 }
 
 const password = {

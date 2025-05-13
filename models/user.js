@@ -4,13 +4,15 @@ import { ValidationError, NotFoundError } from "infra/errors";
 
 async function create(userInputValues) {
   await validateUniqueEmail(userInputValues.email);
-  await hashPasswordInObject(userInputValues);
+
+  const hash = await hashPassword(userInputValues.password);
 
   const username = await generateUniqueUsername(userInputValues.name);
 
   const newUser = await runInsertQuery({
     ...userInputValues,
     username,
+    hash,
   });
   return newUser;
 
@@ -35,10 +37,10 @@ async function create(userInputValues) {
     }
   }
 
-  async function hashPasswordInObject(userInputValues) {
-    const hashedPassword = await password.hash(userInputValues.password);
+  async function hashPassword(rawPassword) {
+    const hashedPassword = await password.hash(rawPassword);
 
-    userInputValues.password = hashedPassword;
+    return hashedPassword;
   }
 
   async function generateUniqueUsername(name) {
@@ -80,7 +82,7 @@ async function create(userInputValues) {
     const results = await postgres.query({
       text: `
         INSERT INTO
-          users (name, username, email, password)
+          users (name, username, email, hash)
         VALUES
           ($1, $2, $3, $4)
         RETURNING
@@ -90,7 +92,7 @@ async function create(userInputValues) {
         userInputValues.name,
         userInputValues.username,
         userInputValues.email,
-        userInputValues.password,
+        userInputValues.hash,
       ],
     });
 
