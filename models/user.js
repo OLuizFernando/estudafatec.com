@@ -1,8 +1,10 @@
 import postgres from "infra/postgres";
+import password from "models/password";
 import { ValidationError, NotFoundError } from "infra/errors";
 
 async function create(userInputValues) {
   await validateUniqueEmail(userInputValues.email);
+  await hashPasswordInObject(userInputValues);
 
   const username = await generateUniqueUsername(userInputValues.name);
 
@@ -31,6 +33,12 @@ async function create(userInputValues) {
         action: "Utilize outro email para realizar o cadastro.",
       });
     }
+  }
+
+  async function hashPasswordInObject(userInputValues) {
+    const hashedPassword = await password.hash(userInputValues.password);
+
+    userInputValues.password = hashedPassword;
   }
 
   async function generateUniqueUsername(name) {
