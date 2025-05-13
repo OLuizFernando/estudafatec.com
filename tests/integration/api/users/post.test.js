@@ -29,6 +29,7 @@ describe("POST /api/users", () => {
       expect(responseBody).toEqual({
         id: responseBody.id,
         name: "Luiz Fernando",
+        username: "luiz-fernando",
         email: "luizfernando@example.com",
         password: "password",
         created_at: responseBody.created_at,
@@ -40,14 +41,14 @@ describe("POST /api/users", () => {
       expect(Date.parse(responseBody.updated_at)).not.toBeNaN();
     });
 
-    test("With duplicated 'email", async () => {
+    test("With duplicated email", async () => {
       const response1 = await fetch("http://localhost:3000/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: "Name",
+          name: "Name1",
           email: "duplicated@example.com",
           password: "password",
         }),
@@ -61,7 +62,7 @@ describe("POST /api/users", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: "Name",
+          name: "Name2",
           email: "Duplicated@example.com",
           password: "password",
         }),
@@ -77,6 +78,44 @@ describe("POST /api/users", () => {
         action: "Utilize outro email para realizar o cadastro.",
         status_code: 400,
       });
+    });
+
+    test("With duplicated name", async () => {
+      const response1 = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: "Duplicated Name",
+          email: "email1@example.com",
+          password: "password",
+        }),
+      });
+
+      expect(response1.status).toBe(201);
+
+      const response1Body = await response1.json();
+
+      expect(response1Body.username).toEqual("duplicated-name");
+
+      const response2 = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: "Duplicated Name",
+          email: "email2@example.com",
+          password: "password",
+        }),
+      });
+
+      expect(response2.status).toBe(201);
+
+      const response2Body = await response2.json();
+
+      expect(response2Body.username).toEqual("duplicated-name-1");
     });
   });
 });
