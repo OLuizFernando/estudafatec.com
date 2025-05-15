@@ -36,7 +36,7 @@ function FeaturesSection() {
             {itemsData.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col h-full justify-center items-center md:px-7 mb-10 md:mb-auto mx-3 flex-1 rounded-2xl shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10 px-7 py-9"
+                className="flex flex-col h-full justify-center items-center md:px-7 mb-10 md:mb-auto mx-3 flex-1 rounded-2xl shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10 px-7 py-9 hover:scale-103 transition-all duration-200 ease-in-out"
               >
                 <Image
                   width="95"
@@ -52,7 +52,7 @@ function FeaturesSection() {
           </div>
           <a
             href="#planos"
-            className="text-[#922020] shadow-2xl bg-white hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-white/50 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs"
+            className="text-[#922020] shadow-2xl bg-white hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-white/50 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs transition-all duration-200 ease-in-out hover:scale-103"
           >
             Vou ser aprovado!
           </a>

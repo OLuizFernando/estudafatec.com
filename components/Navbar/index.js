@@ -23,7 +23,7 @@ function Navbar() {
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-md md:hidden hover:ring hover:ring-neutral-700 focus:border focus:border-neutral-700"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-md md:hidden hover:ring hover:ring-neutral-700 focus:border focus:border-neutral-700 transition-all duration-200 ease-in-out"
               aria-controls="navbar-sticky"
               aria-expanded="false"
             >
@@ -56,7 +56,7 @@ function Navbar() {
                     href={item.href}
                     className={`
                       block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-white
-                      ${pathname === item.href ? "shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10" : "hover:shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] hover:bg-black/10"}
+                      ${pathname === item.href ? "shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10" : "hover:shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] hover:bg-black/10 transition-all duration-200 ease-in-out"}
                     `}
                     aria-current="page"
                   >
@@ -67,7 +67,7 @@ function Navbar() {
               <li>
                 <Link
                   href="/login"
-                  className="block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:px-3.5 md:hover:px-4.5 transition-all duration-200 ease-in-out"
+                  className="block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:scale-103 md:hover:scale-110 transition-all duration-200 ease-in-out"
                 >
                   Entrar
                 </Link>

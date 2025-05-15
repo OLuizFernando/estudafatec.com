@@ -83,7 +83,7 @@ function PlansSection() {
                 </ul>
                 <a
                   href={plan.button.href}
-                  className={`${plan.button.style} focus:ring-4 focus:outline-none font-medium text-xl md:text-2xl rounded-lg py-3 text-center`}
+                  className={`${plan.button.style} focus:ring-4 focus:outline-none font-medium text-xl md:text-2xl rounded-lg py-3 text-center hover:scale-105 transition-all duration-200 ease-in-out`}
                 >
                   {plan.button.text}
                 </a>
