@@ -42,7 +42,7 @@ function FeedbacksSection() {
             {itemsData.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col h-full justify-between lg:px-7 mb-10 lg:mb-auto mx-3 flex-1 rounded-2xl shadow-2xl bg-white text-[#2e2e2e] px-7 py-5"
+                className="flex flex-col h-full justify-between lg:px-7 mb-10 lg:mb-auto mx-3 flex-1 rounded-2xl shadow-2xl bg-white text-[#2e2e2e] px-7 py-5 hover:scale-103 transition-all duration-200 ease-in-out"
               >
                 <Image
                   src="/icons/aspas.png"

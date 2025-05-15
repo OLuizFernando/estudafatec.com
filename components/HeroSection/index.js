@@ -13,7 +13,7 @@ function HeroSection() {
           </p>
           <a
             href="#planos"
-            className="text-white shadow-2xl bg-[#922020] hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs"
+            className="text-white shadow-2xl bg-[#922020] hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-2xl md:text-3xl rounded-lg py-3 text-center w-xs transition-all duration-200 ease-in-out hover:scale-103"
           >
             Comece a estudar
           </a>
