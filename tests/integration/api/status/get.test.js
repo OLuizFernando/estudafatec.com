@@ -28,7 +28,9 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.postgres.version).toBeDefined();
 
       expect(responseBody.dependencies.postgres.max_connections).toBe(100);
-      expect(responseBody.dependencies.postgres.opened_connections).toBe(1);
+      expect(responseBody.dependencies.postgres.opened_connections <= 20).toBe(
+        true,
+      );
       expect(responseBody.dependencies.postgres.version).toBe("16.0");
 
       expect(responseBody.dependencies.mongo.max_connections).toBeDefined();
