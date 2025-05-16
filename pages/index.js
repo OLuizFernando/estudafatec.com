@@ -3,6 +3,7 @@ import HeroSection from "components/HeroSection";
 import FeaturesSection from "components/FeaturesSection";
 import FeedbacksSection from "components/FeedbacksSection";
 import PlansSection from "components/PlansSection";
+import Footer from "components/Footer";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <FeaturesSection />
       <FeedbacksSection />
       <PlansSection />
+      <Footer />
     </>
   );
 }
