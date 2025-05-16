@@ -14,7 +14,7 @@ export default function MyApp({ Component, pageProps }) {
         />
         <meta
           name="keywords"
-          content="vestibular da fatec, vestibular fatec 2025, prova da fatec, fatec provas anteriores, prova fatec 2025, fatec prova 2024, o que cai na prova da fatec"
+          content="estudar fatec, vestibular da fatec, vestibular fatec 2025, prova da fatec, fatec provas anteriores, prova fatec 2025, fatec prova 2024, o que cai na prova da fatec"
         />
         <meta name="theme-color" content="#2e2e2e" />
 
