@@ -24,17 +24,22 @@ function CredentialsForm({ title, inputs, buttonText, redirectText }) {
           ))}
           <button
             type="submit"
-            className="text-white shadow-2xl bg-[#922020] hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 text-xl rounded-lg p-3 text-center w-full mb-3 mt-5"
+            className="text-white shadow-2xl bg-[#922020] hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 text-xl rounded-lg p-3 text-center w-full mt-5"
           >
             {buttonText}
           </button>
         </form>
-        <a href={redirectText.href} className="text-[#2e2e2e]">
-          {redirectText.label}{" "}
-          <span className="text-[#922020] hover:underline">
-            {redirectText.linkText}
-          </span>
-        </a>
+        {redirectText ? (
+          <a
+            href={redirectText.href}
+            className="text-[#2e2e2e] text-center mt-3"
+          >
+            {redirectText.label}{" "}
+            <span className="text-[#922020] hover:underline">
+              {redirectText.linkText}
+            </span>
+          </a>
+        ) : null}
       </div>
     </>
   );
