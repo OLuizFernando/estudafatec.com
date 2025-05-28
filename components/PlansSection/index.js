@@ -11,7 +11,7 @@ function PlansSection() {
         text: "Experimente",
         style:
           "text-[#2e2e2e] bg-white hover:bg-neutral-200 border-2 border-neutral-200 focus:ring-neutral-100",
-        href: "/register",
+        href: "/waitlist",
       },
       features: [
         { id: 0, text: "10 Questões por dia", icon: "/icons/check.png" },
@@ -28,7 +28,7 @@ function PlansSection() {
         text: "Seja aprovado",
         style:
           "text-white bg-[#922020] hover:bg-red-900 shadow-lg focus:ring-red-300",
-        href: "/payment",
+        href: "/waitlist",
       },
       features: [
         { id: 0, text: "Questões ilimitadas", icon: "/icons/check.png" },

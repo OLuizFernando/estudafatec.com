@@ -66,7 +66,7 @@ function Navbar() {
               ))}
               <li>
                 <Link
-                  href="/login"
+                  href="/waitlist"
                   className="block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:scale-103 md:hover:scale-110 transition-all duration-200 ease-in-out"
                 >
                   Entrar
