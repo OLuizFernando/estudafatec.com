@@ -5,6 +5,7 @@ function Waitlist() {
     <>
       <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-white to-neutral-300">
         <CredentialsForm
+          endpoint="/api/waitlist"
           title="Lista de Espera"
           inputs={[
             {
