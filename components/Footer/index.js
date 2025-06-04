@@ -5,7 +5,7 @@ function Footer() {
     { id: 0, text: "Recursos", href: "/#recursos" },
     { id: 1, text: "Depoimentos", href: "/#depoimentos" },
     { id: 2, text: "Planos", href: "/#planos" },
-    { id: 3, text: "Entrar", href: "/login" },
+    { id: 3, text: "Entrar", href: "/waitlist" },
   ];
 
   return (
