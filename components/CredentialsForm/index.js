@@ -41,7 +41,9 @@ function CredentialsForm({
   return (
     <>
       <div className="flex flex-col justify-center items-center bg-white shadow-lg rounded-2xl py-15 px-10 md:p-15 m-5 max-w-md">
-        <h1 className="text-4xl text-center font-bold mb-10">{title}</h1>
+        <h1 className="text-4xl text-center font-bold mb-10 text-[#2e2e2e]">
+          {title}
+        </h1>
         <form onSubmit={handleSubmit} className="flex flex-col">
           {inputs.map((input) => (
             <div key={input.id} className="mb-5">

@@ -36,6 +36,32 @@ describe("POST /api/waitlist", () => {
       expect(Date.parse(responseBody.created_at)).not.toBeNaN();
     });
 
+    test("Without name", async () => {
+      const response = await fetch("http://localhost:3000/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "withoutname@example.com",
+        }),
+      });
+
+      expect(response.status).toBe(201);
+
+      const responseBody = await response.json();
+
+      expect(responseBody).toEqual({
+        id: responseBody.id,
+        name: null,
+        email: "withoutname@example.com",
+        created_at: responseBody.created_at,
+      });
+
+      expect(uuidVersion(responseBody.id)).toBe(4);
+      expect(Date.parse(responseBody.created_at)).not.toBeNaN();
+    });
+
     test("With duplicated email", async () => {
       const response1 = await fetch("http://localhost:3000/api/waitlist", {
         method: "POST",
