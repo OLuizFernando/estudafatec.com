@@ -4,27 +4,27 @@ function FeedbacksSection() {
   const itemsData = [
     {
       id: 0,
-      profileSrc: "/profiles/desconhecido.png",
-      name: "Fulano de Tal",
+      profileSrc: "/profiles/ana-catarina.png",
+      name: "Ana Catarina",
       degree: "Análise e Desenvolvimento de Sistemas",
       feedback:
-        "Estudei todos os dias com o banco de questões da plataforma e fui aprovado na Fatec São Paulo!",
+        "Estudei bastante pelo banco de questões da plataforma e consegui ser aprovada!",
     },
     {
       id: 1,
-      profileSrc: "/profiles/desconhecido.png",
-      name: "Siclano de Oliveira",
+      profileSrc: "/profiles/marcelo-vinicius.png",
+      name: "Marcelo Vinicius",
       degree: "Marketing",
       feedback:
-        "O plano de estudos me ajudou a manter o foco durante os meses que antecederam a prova. Valeu muito a pena!",
+        "O plano de estudos me ajudou demais a manter o foco nos meses antes da prova. Valeu muito a pena!",
     },
     {
       id: 2,
-      profileSrc: "/profiles/desconhecido.png",
-      name: "Beutrano da Silva",
-      degree: "Logística",
+      profileSrc: "/profiles/luiz-fernando.png",
+      name: "Luiz Fernando",
+      degree: "Análise e Desenvolvimento de Sistemas",
       feedback:
-        "As estatísticas me motivaram demais! Eu via meu progresso toda semana e isso me deu confiança pra encarar o vestibular.",
+        "Com as estatísticas, eu conseguia ver meus pontos fracos e sabia no que focar. Foi o que mais me ajudou.",
     },
   ];
 
@@ -57,6 +57,7 @@ function FeedbacksSection() {
                   <Image
                     width="95"
                     height="95"
+                    quality="100"
                     className="me-5 lg:me-7 rounded-full"
                     src={item.profileSrc}
                     alt={`Foto de ${item.name}`}
