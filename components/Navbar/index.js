@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navItems = [
     { id: 0, text: "Recursos", href: "/#recursos" },
     { id: 1, text: "Depoimentos", href: "/#depoimentos" },
@@ -10,22 +13,38 @@ function Navbar() {
 
   const pathname = usePathname();
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       <nav className="bg-[#2e2e2e] bg-opacity-5 fixed w-full z-20 top-0 start-0">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-5">
           <Link href="/" className="flex items-center">
-            <span className="self-center text-2xl md:text-3xl whitespace-nowrap text-white konsens font-semibold">
+            <span className="self-center text-2xl sm:text-3xl whitespace-nowrap text-white konsens font-semibold">
               EstudaFatec.com
             </span>
           </Link>
-          <div className="flex">
+
+          <div className="flex items-center space-x-3">
+            <Link
+              href="/waitlist"
+              className="hidden sm:block lg:hidden text-lg py-2 px-3 font-medium rounded-md text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:scale-110 transition-all duration-200 ease-in-out"
+            >
+              Lista de Espera
+            </Link>
+
             <button
-              data-collapse-toggle="navbar-sticky"
+              onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-md md:hidden hover:ring hover:ring-neutral-700 focus:border focus:border-neutral-700 transition-all duration-200 ease-in-out"
-              aria-controls="navbar-sticky"
-              aria-expanded="false"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-md lg:hidden hover:ring hover:ring-neutral-700 focus:border focus:border-neutral-700 transition-all duration-200 ease-in-out"
+              aria-controls="navbar-menu"
+              aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Abrir menu</span>
               <svg
@@ -45,43 +64,49 @@ function Navbar() {
               </svg>
             </button>
           </div>
+
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="navbar-sticky"
+            className={`items-center justify-between w-full lg:flex lg:w-auto lg:order-1 ${
+              isMenuOpen ? "block" : "hidden"
+            }`}
+            id="navbar-menu"
           >
-            <ul className="flex flex-col text-lg p-4 md:p-0 mt-4 font-medium border border-neutral-700 rounded-lg bg-[#2e2e2e] md:space-x-4 lg:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+            <ul className="flex flex-col text-lg p-4 lg:p-0 mt-4 font-medium border border-neutral-700 rounded-lg bg-[#2e2e2e] lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <a
                     href={item.href}
+                    onClick={closeMenu}
                     className={`
-                      block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-white
-                      ${pathname === item.href ? "shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10" : "hover:shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] hover:bg-black/10 transition-all duration-200 ease-in-out"}
+                      block py-2 px-3 rounded-md lg:py-2 lg:px-4 my-1 lg:my-0 text-white
+                      ${
+                        pathname === item.href
+                          ? "shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10"
+                          : "hover:shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] hover:bg-black/10 transition-all duration-200 ease-in-out"
+                      }
                     `}
-                    aria-current="page"
+                    aria-current={pathname === item.href ? "page" : undefined}
                   >
                     {item.text}
                   </a>
                 </li>
               ))}
+
               <li>
                 <Link
                   href="/waitlist"
-                  className="block py-2 px-3 rounded-md md:py-2 md:px-4 my-1 md:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:scale-103 md:hover:scale-110 transition-all duration-200 ease-in-out"
+                  onClick={closeMenu}
+                  className="block sm:hidden lg:block py-2 px-3 rounded-md lg:py-2 lg:px-4 my-1 lg:my-0 text-[#2e2e2e] bg-white hover:bg-neutral-200 shadow-2xl hover:scale-103 lg:hover:scale-110 transition-all duration-200 ease-in-out"
                 >
-                  Entrar
+                  Lista de Espera
                 </Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <div className="h-20"></div>
 
-      <script
-        src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"
-        defer
-      ></script>
+      <div className="h-20"></div>
     </>
   );
 }
