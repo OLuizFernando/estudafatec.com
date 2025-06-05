@@ -22,6 +22,7 @@ function HeroSection() {
           <Image
             width="1000"
             height="1000"
+            quality="100"
             src="/home/student.png"
             alt="Estudante"
             priority
