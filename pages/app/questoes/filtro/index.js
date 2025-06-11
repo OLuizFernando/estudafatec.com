@@ -15,7 +15,7 @@ function Filtro() {
     if (semestre) params.append("semestre", semestre);
 
     const queryString = params.toString();
-    return `/api/questoes${queryString ? `?${queryString}` : ""}`;
+    return `/app/questoes${queryString ? `?${queryString}` : ""}`;
   };
 
   return (
