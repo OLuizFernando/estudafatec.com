@@ -6,7 +6,12 @@ function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 0, text: "Questões", href: "/app/questoes/filtro" },
+    {
+      id: 0,
+      text: "Questões",
+      href: "/app/questoes/filtro",
+      relatedRoute: "/app/questoes",
+    },
     { id: 1, text: "Planos de Estudo", href: "" },
     { id: 2, text: "Minhas Estatísticas", href: "" },
   ];
@@ -73,7 +78,7 @@ function AppNavbar() {
                     className={`
                       block py-2 px-3 rounded-md lg:py-2 lg:px-4 my-1 lg:my-0 text-white
                       ${
-                        pathname === item.href
+                        pathname.startsWith(item.relatedRoute)
                           ? "shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] bg-black/10"
                           : "hover:shadow-[inset_0_5px_15px_rgba(0,0,0,0.1)] hover:bg-black/10 transition-all duration-200 ease-in-out"
                       }
