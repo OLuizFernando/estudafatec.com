@@ -1,19 +1,7 @@
 import crypto from "node:crypto";
 import postgres from "infra/postgres";
-import * as cookie from "cookie";
 
 const EXPIRATION_IN_MILLISECONDS = 60 * 60 * 24 * 30 * 1000; // 30 days
-
-function setCookie(token) {
-  const newCookie = cookie.serialize("session_id", token, {
-    path: "/",
-    maxAge: session.EXPIRATION_IN_MILLISECONDS / 1000,
-    secure: process.env.NODE_ENV === "production" ? true : false,
-    httpOnly: true,
-  });
-
-  return newCookie;
-}
 
 async function create(userId) {
   const token = crypto.randomBytes(48).toString("hex");
@@ -41,7 +29,6 @@ async function create(userId) {
 
 const session = {
   create,
-  setCookie,
   EXPIRATION_IN_MILLISECONDS,
 };
 
