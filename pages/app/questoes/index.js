@@ -107,7 +107,7 @@ function Questoes() {
                       </div>
                     ))}
                   </div>
-                  <div className="text-[#2e2e2e] border-1 border-neutral-300 py-3 px-4 mx-4 my-4 w-fit rounded-lg hover:cursor-pointer hover:bg-neutral-200 transition-all duration-200 ease-in-out">
+                  <div className="text-[#2e2e2e] border-1 border-neutral-300 py-3 px-4 mx-4 my-4 w-fit rounded-lg hover:cursor-pointer hover:border-[#922020] hover:bg-[#922020] hover:text-white transition-all duration-200 ease-in-out">
                     Responder
                   </div>
                 </div>
