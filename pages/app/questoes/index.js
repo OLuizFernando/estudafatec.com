@@ -21,7 +21,7 @@ function Questoes() {
   const apiUrl = buildApiUrl();
   const { isLoading, data } = useSWR(apiUrl, fetchAPI);
 
-  let questionsFound = "Carregando...";
+  let questionsFound = null;
 
   if (!isLoading && data) {
     questionsFound = data;
@@ -29,14 +29,20 @@ function Questoes() {
 
   return (
     <>
-      <div className="bg-neutral-200">
+      <div className="bg-neutral-200 min-h-screen">
         <AppNavbar />
-        <div className="max-w-screen-xl mx-auto mt-5 lg:mt-10">
-          {isLoading
-            ? questionsFound
-            : questionsFound.map((question) => (
+        <div className="max-w-screen-xl mx-auto">
+          {isLoading ? (
+            <div className="flex flex-row h-screen items-center justify-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#922020] animate-bounce"></div>
+              <div className="w-3 h-3 rounded-full bg-[#922020] animate-bounce [animation-delay:-.3s]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#922020] animate-bounce [animation-delay:-.5s]"></div>
+            </div>
+          ) : (
+            <div className="lg:mt-15">
+              {questionsFound.map((question) => (
                 <div
-                  className="my-7 bg-white border-1 border-neutral-300 text-lg lg:text-xl shadow-lg rounded-xl mx-5"
+                  className="my-6 lg:my-10 bg-white border-1 border-neutral-300 text-lg lg:text-xl shadow-lg rounded-xl mx-5"
                   key={question._id}
                 >
                   <div className="border-b-1 border-neutral-300 px-5 py-4">
@@ -106,6 +112,8 @@ function Questoes() {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
         </div>
       </div>
     </>
