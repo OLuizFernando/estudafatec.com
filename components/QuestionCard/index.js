@@ -1,7 +1,17 @@
 import Image from "next/image";
 
+import { useState } from "react";
+
 function QuestionCard(props) {
   const question = props.question;
+
+  const [selectedAlternative, setSelectedAlternative] = useState(null);
+
+  function handleAlternativeSelect(letter) {
+    selectedAlternative === letter
+      ? setSelectedAlternative(null)
+      : setSelectedAlternative(letter);
+  }
 
   return (
     <>
@@ -49,7 +59,8 @@ function QuestionCard(props) {
         <div className="mb-4">
           {question.alternativas.map((alternative, index) => (
             <div
-              className="flex border-1 border-neutral-300 py-3 px-4 mx-4 my-2 rounded-lg hover:cursor-pointer hover:bg-neutral-200 transition-all duration-200 ease-in-out"
+              onClick={() => handleAlternativeSelect(alternative.letra)}
+              className={`flex border-1 border-neutral-300 py-3 px-4 mx-4 my-2 rounded-lg hover:cursor-pointer transition-all duration-200 ease-in-out ${selectedAlternative === alternative.letra ? "ring-3 ring-neutral-400 bg-neutral-200" : "hover:bg-neutral-200"}`}
               key={index}
             >
               <p className="flex items-center text-[#2e2e2e]">
