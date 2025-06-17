@@ -7,10 +7,43 @@ function QuestionCard(props) {
 
   const [selectedAlternative, setSelectedAlternative] = useState(null);
 
-  function handleAlternativeSelect(letter) {
-    selectedAlternative === letter
-      ? setSelectedAlternative(null)
-      : setSelectedAlternative(letter);
+  function handleAlternativeSelect(alternative) {
+    if (!hasAnswered) {
+      selectedAlternative === alternative
+        ? setSelectedAlternative(null)
+        : setSelectedAlternative(alternative);
+    }
+  }
+
+  const [hasAnswered, setHasAnswered] = useState(false);
+
+  function handleAnswer() {
+    if (selectedAlternative !== null && !hasAnswered) {
+      setHasAnswered(true);
+    }
+  }
+
+  function getAlternativeStyle(alternative) {
+    const isSelected = selectedAlternative?.letra === alternative.letra;
+    const isCorrect = alternative.correta;
+    const baseStyle =
+      "flex border-1 border-neutral-300 py-3 px-4 mx-4 my-2 rounded-lg hover:cursor-pointer transition-all duration-200 ease-in-out ";
+
+    if (!hasAnswered) {
+      return isSelected
+        ? baseStyle + "ring-3 ring-neutral-400 bg-neutral-200"
+        : baseStyle + "hover:bg-neutral-200";
+    }
+
+    if (isSelected && isCorrect)
+      return baseStyle + "ring-3 ring-green-800 bg-green-200";
+
+    if (isSelected && !isCorrect)
+      return baseStyle + "ring-3 ring-[#922020] bg-red-200";
+
+    if (!isSelected && isCorrect) return baseStyle + "bg-green-200";
+
+    return baseStyle + "bg-neutral-200";
   }
 
   return (
@@ -46,21 +79,21 @@ function QuestionCard(props) {
               {texto}
             </p>
           ))}
-          {!question.imagens
-            ? ""
-            : question.imagens.map((imagem, index) => (
+          {question.imagens
+            ? question.imagens.map((imagem, index) => (
                 <img
                   className="max-h-125 max-w-fit mb-5"
                   src={imagem}
                   key={index}
                 />
-              ))}
+              ))
+            : ""}
         </div>
         <div className="mb-4">
           {question.alternativas.map((alternative, index) => (
             <div
-              onClick={() => handleAlternativeSelect(alternative.letra)}
-              className={`flex border-1 border-neutral-300 py-3 px-4 mx-4 my-2 rounded-lg hover:cursor-pointer transition-all duration-200 ease-in-out ${selectedAlternative === alternative.letra ? "ring-3 ring-neutral-400 bg-neutral-200" : "hover:bg-neutral-200"}`}
+              onClick={() => handleAlternativeSelect(alternative)}
+              className={getAlternativeStyle(alternative)}
               key={index}
             >
               <p className="flex items-center text-[#2e2e2e]">
@@ -71,9 +104,15 @@ function QuestionCard(props) {
             </div>
           ))}
         </div>
-        <div className="text-[#2e2e2e] border-1 border-neutral-300 py-3 px-4 mx-4 my-4 w-fit rounded-lg hover:cursor-pointer hover:border-[#922020] hover:bg-[#922020] hover:text-white transition-all duration-200 ease-in-out">
+        <button
+          onClick={handleAnswer}
+          className={`
+            text-[#2e2e2e] border-1 border-neutral-300 py-3 px-4 mx-4 my-4 w-fit rounded-lg hover:cursor-pointer transition-all duration-200 ease-in-out
+            ${hasAnswered || !selectedAlternative ? "bg-neutral-200" : "hover:border-[#922020] hover:bg-[#922020] hover:text-white"}
+          `}
+        >
           Responder
-        </div>
+        </button>
       </div>
     </>
   );
