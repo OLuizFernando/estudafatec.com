@@ -53,9 +53,9 @@ function QuestionCard(props) {
           <div className="flex mb-2">
             <Image
               src="/icons/prova.png"
-              width="20"
+              width="25"
               height="20"
-              alt="Ícone livro"
+              alt="Ícone Prova"
               className="me-1 opacity-75"
             />
             <span className="text-[#2e2e2e]/75">
@@ -65,7 +65,7 @@ function QuestionCard(props) {
           <div className="flex">
             <Image
               src="/icons/livro.png"
-              width="20"
+              width="25"
               height="20"
               alt="Ícone livro"
               className="me-1 opacity-75"
