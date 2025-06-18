@@ -39,7 +39,7 @@ function Questoes() {
               <div className="w-3 h-3 rounded-full bg-[#922020] animate-bounce [animation-delay:-.5s]"></div>
             </div>
           ) : (
-            <div className="lg:mt-15">
+            <div className="lg:py-5">
               {questionsFound.map((question) => (
                 <div key={question._id} className="my-6 lg:my-10 mx-5">
                   <QuestionCard question={question} />
