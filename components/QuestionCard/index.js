@@ -15,6 +15,19 @@ function QuestionCard(props) {
     }
   }
 
+  const [eliminatedAlternatives, setEliminatedAlternatives] = useState([]);
+
+  function handleRightClick(event, alternative) {
+    event.preventDefault();
+    if (!hasAnswered) {
+      setEliminatedAlternatives((prev) =>
+        prev.includes(alternative.letra)
+          ? prev.filter((letra) => letra !== alternative.letra)
+          : [...prev, alternative.letra],
+      );
+    }
+  }
+
   const [hasAnswered, setHasAnswered] = useState(false);
 
   function handleAnswer() {
@@ -25,21 +38,27 @@ function QuestionCard(props) {
 
   function getAlternativeStyle(alternative) {
     const isSelected = selectedAlternative?.letra === alternative.letra;
+    const isEliminated = eliminatedAlternatives.includes(alternative.letra);
     const isCorrect = alternative.correta;
+
     const baseStyle =
       "flex border-1 border-neutral-300 py-3 px-4 mx-4 my-2 rounded-lg hover:cursor-pointer transition-all duration-200 ease-in-out ";
 
     if (!hasAnswered) {
-      return isSelected
-        ? baseStyle + "ring-3 ring-neutral-400 bg-neutral-200"
-        : baseStyle + "hover:bg-neutral-200";
+      if (isSelected) {
+        return baseStyle + "ring-4 ring-neutral-400 bg-neutral-200 shadow-lg";
+      } else if (isEliminated) {
+        return baseStyle + "line-through bg-neutral-200";
+      } else {
+        return baseStyle + "hover:bg-neutral-200";
+      }
     }
 
     if (isSelected && isCorrect)
-      return baseStyle + "ring-3 ring-green-800 bg-green-200";
+      return baseStyle + "ring-4 ring-green-800 bg-green-200";
 
     if (isSelected && !isCorrect)
-      return baseStyle + "ring-3 ring-[#922020] bg-red-200";
+      return baseStyle + "ring-4 ring-[#922020] bg-red-200";
 
     if (!isSelected && isCorrect) return baseStyle + "bg-green-200";
 
@@ -93,13 +112,18 @@ function QuestionCard(props) {
           {question.alternativas.map((alternative, index) => (
             <div
               onClick={() => handleAlternativeSelect(alternative)}
+              onContextMenu={(event) => handleRightClick(event, alternative)}
               className={getAlternativeStyle(alternative)}
               key={index}
             >
               <p className="flex items-center text-[#2e2e2e]">
                 <span className="opacity-75 me-2">{alternative.letra})</span>
                 {alternative.texto}
-                <img className="max-h-50 max-w-50" src={alternative.imagem} />
+                {alternative.imagem ? (
+                  <img className="max-h-50 max-w-50" src={alternative.imagem} />
+                ) : (
+                  ""
+                )}
               </p>
             </div>
           ))}
