@@ -92,9 +92,9 @@ function QuestionCard(props) {
             <span className="text-[#2e2e2e]/75">{question.disciplina}</span>
           </div>
         </div>
-        <div className="px-5 flex flex-col">
+        <div className="px-5 my-4 flex flex-col">
           {question.textos.map((texto, index) => (
-            <p key={index} className="my-4 text-[#2e2e2e]">
+            <p key={index} className="my-2 text-[#2e2e2e]">
               {texto}
             </p>
           ))}
