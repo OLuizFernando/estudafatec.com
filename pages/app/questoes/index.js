@@ -1,5 +1,5 @@
 import AppNavbar from "components/AppNavbar";
-import QuestionCard from "components/QuestionCard";
+import QuestionCard from "./QuestionCard";
 
 import useSWR from "swr";
 import { useSearchParams } from "next/navigation";
