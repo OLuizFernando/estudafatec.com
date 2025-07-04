@@ -12,8 +12,8 @@ function AppNavbar() {
       href: "/app/questoes/filtro",
       relatedRoute: "/app/questoes",
     },
-    { id: 1, text: "Planos de Estudo", href: "" },
     { id: 2, text: "Minhas Estatísticas", href: "" },
+    { id: 1, text: "Planos de Estudo", href: "" },
   ];
 
   const pathname = usePathname();
