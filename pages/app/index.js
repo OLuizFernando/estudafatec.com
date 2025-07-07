@@ -35,7 +35,7 @@ function App() {
             <a
               key={index}
               href={item.href}
-              className="flex flex-col items-center justify-center text-center text-[#2e2e2e] px-10 py-10 lg:px-15 lg:py-10 flex-1 rounded-2xl shadow-xl bg-white hover:scale-103 hover:cursor-pointer transition-all duration-200 ease-in-out"
+              className="flex flex-col items-center justify-center text-center px-10 py-10 lg:px-15 lg:py-10 flex-1 rounded-2xl shadow-xl bg-white hover:scale-103 hover:cursor-pointer transition-all duration-200 ease-in-out"
             >
               <Image
                 width="75"
@@ -44,8 +44,10 @@ function App() {
                 src={item.iconSrc}
                 alt={`ícone ${item.title}`}
               />
-              <h2 className="font-semibold text-3xl mb-3">{item.title}</h2>
-              <p className="text-xl">{item.text}</p>
+              <h2 className="font-semibold text-3xl text-[#2e2e2e] mb-3">
+                {item.title}
+              </h2>
+              <p className="text-xl text-[#2e2e2e]">{item.text}</p>
             </a>
           ))}
         </div>
