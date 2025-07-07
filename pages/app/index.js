@@ -12,13 +12,13 @@ function App() {
     {
       href: "",
       title: "Acompanhar",
-      text: "Ver como você tem se saído nas questões",
+      text: "Veja como você tem se saído nas questões",
       iconSrc: "/icons/acompanhar.png",
     },
     {
       href: "",
       title: "Planejar",
-      text: "Montar planos de estudos personalizados",
+      text: "Monte planos de estudos personalizados",
       iconSrc: "/icons/planejar.png",
     },
   ];
