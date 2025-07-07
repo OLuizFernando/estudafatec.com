@@ -27,7 +27,7 @@ function App() {
     <>
       <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-white to-neutral-300 pb-10 md:pb-0">
         <AppNavbar />
-        <h1 className="font-bold text-5xl text-[#2e2e2e] mb-15">
+        <h1 className="font-bold text-center text-4xl md:text-5xl text-[#2e2e2e] mt-10 md:mt-0 mb-8 md:mb-15">
           E aí! Vamos Estudar?
         </h1>
         <div className="flex flex-col md:flex-row gap-7 max-w-screen-xl mx-5 lg:mx-10">
