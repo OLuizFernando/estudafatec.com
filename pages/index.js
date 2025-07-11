@@ -63,7 +63,7 @@ function FeaturesSection() {
       id: 1,
       iconSrc: "/icons/estatistica.png",
       title: "Estatísticas do Aluno",
-      text: "Acompanhseu progresso e desempenho.",
+      text: "Acompanhe seu progresso e desempenho.",
     },
     {
       id: 2,
