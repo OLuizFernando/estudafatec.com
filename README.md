@@ -1,6 +1,8 @@
-# [EstudaFatec.com - A Plataforma de Estudos para o Vestibular Fatec](https://estudafatec.com)
+[![EstudaFatec.com](public/logos/red-200.png)](https://estudafatec.com)
 
-O **EstudaFatec.com** é uma plataforma de estudos pensada para quem quer se preparar para o vestibular da FATEC, uma das principais instituições públicas de ensino tecnológico do estado de São Paulo.
+# EstudaFatec.com - A Plataforma de Estudos para o Vestibular Fatec
+
+O [**EstudaFatec.com**](https://estudafatec.com) é uma plataforma de estudos pensada para quem quer se preparar para o vestibular da FATEC, uma das principais instituições públicas de ensino tecnológico do estado de São Paulo.
 
 ## 💡 Sobre o Projeto
 
