@@ -24,7 +24,7 @@ describe("GET /api/users/[username]", () => {
         id: responseBody.id,
         name: "Same Case",
         username: "same-case",
-        email: `${createdUser.email}`,
+        email: createdUser.email,
         hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,

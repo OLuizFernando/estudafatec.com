@@ -34,7 +34,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: "New Name",
         username: "name",
-        email: `${createdUser.email}`,
+        email: createdUser.email,
         hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
@@ -71,9 +71,9 @@ describe("PATCH /api/users/[username]", () => {
 
       expect(responseBody).toEqual({
         id: responseBody.id,
-        name: `${createdUser.name}`,
-        username: `${createdUser.username}`,
-        email: `${createdUser.email}`,
+        name: createdUser.name,
+        username: createdUser.username,
+        email: createdUser.email,
         hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
@@ -85,9 +85,7 @@ describe("PATCH /api/users/[username]", () => {
 
       expect(responseBody.updated_at > responseBody.created_at).toBe(true);
 
-      const userInDatabase = await user.findOneByUsername(
-        `${createdUser.username}`,
-      );
+      const userInDatabase = await user.findOneByUsername(createdUser.username);
 
       const newPasswordMatch = await password.compare(
         "newpassword",
@@ -129,7 +127,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: "Unique Username",
         username: "new-unique-username",
-        email: `${createdUser.email}`,
+        email: createdUser.email,
         hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
@@ -168,7 +166,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: "Same Username",
         username: "Same-Username",
-        email: `${createdUser.email}`,
+        email: createdUser.email,
         hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
@@ -205,8 +203,8 @@ describe("PATCH /api/users/[username]", () => {
 
       expect(responseBody).toEqual({
         id: responseBody.id,
-        name: `${createdUser.name}`,
-        username: `${createdUser.username}`,
+        name: createdUser.name,
+        username: createdUser.username,
         email: "newuniqueemail@example.com",
         hash: responseBody.hash,
         created_at: responseBody.created_at,
@@ -244,8 +242,8 @@ describe("PATCH /api/users/[username]", () => {
 
       expect(responseBody).toEqual({
         id: responseBody.id,
-        name: `${createdUser.name}`,
-        username: `${createdUser.username}`,
+        name: createdUser.name,
+        username: createdUser.username,
         email: "SameEmail@example.com",
         hash: responseBody.hash,
         created_at: responseBody.created_at,
