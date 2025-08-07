@@ -41,7 +41,7 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         500,
       );
-      expect(responseBody.dependencies.mongo.version).toBe("8.0.11");
+      expect(responseBody.dependencies.mongo.version).toBe("8.0.12");
     });
   });
 });
