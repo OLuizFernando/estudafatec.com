@@ -80,11 +80,36 @@ async function renew(sessionToken) {
   }
 }
 
+async function expireById(sessionId) {
+  const renewedSessionObject = await runUpdateQuery(sessionId);
+  return renewedSessionObject;
+
+  async function runUpdateQuery(sessionId) {
+    const results = await postgres.query({
+      text: `
+      UPDATE
+        sessions
+      SET
+        expires_at = expires_at - interval '1 year',
+        updated_at = NOW()
+      WHERE
+        id = $1
+      RETURNING
+        *
+    ;`,
+      values: [sessionId],
+    });
+
+    return results.rows[0];
+  }
+}
+
 const session = {
   EXPIRATION_IN_MILLISECONDS,
   create,
   findOneValidByToken,
   renew,
+  expireById,
 };
 
 export default session;
