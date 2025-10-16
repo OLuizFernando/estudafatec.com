@@ -10,11 +10,14 @@ async function create(userInputValues) {
 
   const generatedUsername = await username.generate(userInputValues.name);
 
+  const defaultFeatures = ["read:activation_token"];
+
   const newUser = await runInsertQuery({
     name: userInputValues.name,
     email: userInputValues.email,
     username: generatedUsername,
     hash,
+    defaultFeatures,
   });
   return newUser;
 
@@ -22,9 +25,9 @@ async function create(userInputValues) {
     const results = await postgres.query({
       text: `
         INSERT INTO
-          users (name, username, email, hash)
+          users (name, username, email, hash, features)
         VALUES
-          ($1, $2, $3, $4)
+          ($1, $2, $3, $4, $5)
         RETURNING
           *
         ;`,
@@ -33,6 +36,7 @@ async function create(userInputValues) {
         userInputValues.username,
         userInputValues.email,
         userInputValues.hash,
+        userInputValues.defaultFeatures,
       ],
     });
 
