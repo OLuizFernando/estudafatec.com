@@ -42,12 +42,12 @@ Equipe EstudaFatec.com`,
   });
 }
 
-async function findOneByUserId(userId) {
-  const activationTokenFound = await runSelectQuery(userId);
+async function findOneValidById(tokenId) {
+  const activationTokenFound = await runSelectQuery(tokenId);
 
   return activationTokenFound;
 
-  async function runSelectQuery(userId) {
+  async function runSelectQuery(tokenId) {
     const results = await postgres.query({
       text: `
         SELECT
@@ -55,11 +55,13 @@ async function findOneByUserId(userId) {
         FROM
           user_activation_tokens
         WHERE
-          user_id = $1
+          id = $1
+          AND used_at IS NULL
+          AND expires_at > NOW()
         LIMIT
           1
         ;`,
-      values: [userId],
+      values: [tokenId],
     });
 
     if (results.rowCount === 0) {
@@ -76,7 +78,7 @@ async function findOneByUserId(userId) {
 const activation = {
   generateToken,
   sendEmailToUser,
-  findOneByUserId,
+  findOneValidById,
 };
 
 export default activation;
