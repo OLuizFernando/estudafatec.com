@@ -1,6 +1,7 @@
 import email from "infra/email";
 import postgres from "infra/postgres";
 import webserver from "infra/webserver";
+import user from "models/user";
 import { NotFoundError } from "infra/errors";
 
 const EXPIRATION_IN_MILLISECONDS = 60 * 15 * 1000; // 15 minutes
@@ -43,9 +44,9 @@ Equipe EstudaFatec.com`,
 }
 
 async function findOneValidById(tokenId) {
-  const activationTokenFound = await runSelectQuery(tokenId);
+  const activationTokenObject = await runSelectQuery(tokenId);
 
-  return activationTokenFound;
+  return activationTokenObject;
 
   async function runSelectQuery(tokenId) {
     const results = await postgres.query({
@@ -75,10 +76,42 @@ async function findOneValidById(tokenId) {
   }
 }
 
+async function markTokenAsUsed(tokenId) {
+  const activatedTokenObject = await runUpdateQuery(tokenId);
+
+  return activatedTokenObject;
+
+  async function runUpdateQuery(tokenId) {
+    const results = await postgres.query({
+      text: `
+        UPDATE
+          user_activation_tokens
+        SET
+          used_at = timezone('utc', now()),
+          updated_at = timezone('utc', now())
+        WHERE
+          id = $1
+        RETURNING
+          *
+        ;`,
+      values: [tokenId],
+    });
+
+    return results.rows[0];
+  }
+}
+
+async function activateUserById(userId) {
+  const activatedUser = await user.setFeatures(userId, ["create:session"]);
+  return activatedUser;
+}
+
 const activation = {
   generateToken,
   sendEmailToUser,
   findOneValidById,
+  markTokenAsUsed,
+  activateUserById,
 };
 
 export default activation;
