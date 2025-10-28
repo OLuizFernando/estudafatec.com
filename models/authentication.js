@@ -50,8 +50,8 @@ async function getAuthenticatedUser(providedEmail, providedPassword) {
   }
 }
 
-const authenticator = {
+const authentication = {
   getAuthenticatedUser,
 };
 
-export default authenticator;
+export default authentication;
