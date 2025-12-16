@@ -9,6 +9,7 @@ import {
   ForbiddenError,
 } from "infra/errors";
 import user from "models/user";
+import authorization from "models/authorization";
 
 function onNoMatchHandler(request, response) {
   const publicErrorObject = new MethodNotAllowedError();
@@ -96,13 +97,13 @@ async function injectAnonymousOrAuthenticatedUser(request, response, next) {
 function canRequest(requiredFeature) {
   return (request, response, next) => {
     const userFeatures = request.context.user.features;
-    if (userFeatures.includes(requiredFeature)) {
+    if (authorization.can(userFeatures, requiredFeature)) {
       return next();
     }
 
     throw new ForbiddenError({
       message: "Você não possui permissão para realizar esta ação.",
-      action: `Verifique se o seu usuário possui a feature "${requiredFeature}"`,
+      action: `Verifique se o seu usuário possui a feature "${requiredFeature}".`,
     });
   };
 }

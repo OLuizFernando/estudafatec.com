@@ -5,6 +5,7 @@ import postgres from "infra/postgres";
 import migrator from "models/migrator";
 import user from "models/user";
 import session from "models/session";
+import activation from "models/activation";
 
 const emailHttpUrl = `http://${process.env.EMAIL_HTTP_HOST}:${process.env.EMAIL_HTTP_PORT}`;
 
@@ -57,6 +58,11 @@ async function createUser(userObject) {
   });
 }
 
+async function activateUser(inactiveUser) {
+  const activatedUser = await activation.activateUserById(inactiveUser.id);
+  return activatedUser;
+}
+
 async function createSession(userId) {
   return await session.create(userId);
 }
@@ -96,6 +102,7 @@ const orchestrator = {
   clearDatabase,
   runPendingMigrations,
   createUser,
+  activateUser,
   createSession,
   deleteAllEmails,
   getLastEmail,
