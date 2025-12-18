@@ -107,6 +107,30 @@ describe("Use case: Registration Flow (all successful)", () => {
     expect(createSessionResponseBody.user_id).toBe(createUserResponseBody.id);
   });
 
+  test("Activate account again", async () => {
+    const reactivationResponse = await fetch(
+      `http://localhost:3000/api/activations/${activationTokenId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Cookie: `session_id=${createSessionResponseBody.token}`,
+        },
+      },
+    );
+
+    expect(reactivationResponse.status).toBe(403);
+
+    const reactivationResponseBody = await reactivationResponse.json();
+
+    expect(reactivationResponseBody).toEqual({
+      name: "ForbiddenError",
+      message: "Você não possui permissão para realizar esta ação.",
+      action:
+        'Verifique se o seu usuário possui a feature "read:activation_token".',
+      status_code: 403,
+    });
+  });
+
   test("Get user information", async () => {
     const userInformationResponse = await fetch(
       "http://localhost:3000/api/user",
