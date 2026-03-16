@@ -24,7 +24,7 @@ async function postHandler(request, response) {
     userInputValues.password,
   );
 
-  if (!authorization.can(authenticatedUser.features, "create:session")) {
+  if (!authorization.can(authenticatedUser, "create:session")) {
     throw new ForbiddenError({
       message: "Você não possui permissão para fazer login.",
       action: "Contate o suporte caso você acredite que isto seja um erro.",

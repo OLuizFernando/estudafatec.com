@@ -82,7 +82,11 @@ describe("Use case: Registration Flow (all successful)", () => {
 
     activatedUser = await user.findOneByUsername("registration-flow");
 
-    expect(activatedUser.features).toEqual(["create:session", "read:session"]);
+    expect(activatedUser.features).toEqual([
+      "create:session",
+      "read:session",
+      "update:user",
+    ]);
   });
 
   test("Login", async () => {
@@ -151,7 +155,7 @@ describe("Use case: Registration Flow (all successful)", () => {
       name: "Registration Flow",
       username: "registration-flow",
       email: "registration.flow@example.com",
-      features: ["create:session", "read:session"],
+      features: ["create:session", "read:session", "update:user"],
       hash: createUserResponseBody.hash,
       created_at: createUserResponseBody.created_at,
       updated_at: activatedUser.updated_at.toISOString(),
