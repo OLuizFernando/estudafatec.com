@@ -37,9 +37,9 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeDefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(500);
+      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
-        500,
+        1000,
       );
       expect(typeof responseBody.dependencies.mongo.version).toBe("string");
     });
