@@ -37,9 +37,7 @@ describe("Use case: Registration Flow (all successful)", () => {
       id: createUserResponseBody.id,
       name: "Registration Flow",
       username: "registration-flow",
-      email: "registration.flow@example.com",
       features: ["read:activation_token"],
-      hash: createUserResponseBody.hash,
       created_at: createUserResponseBody.created_at,
       updated_at: createUserResponseBody.updated_at,
     });
@@ -156,7 +154,6 @@ describe("Use case: Registration Flow (all successful)", () => {
       username: "registration-flow",
       email: "registration.flow@example.com",
       features: ["create:session", "read:session", "update:user"],
-      hash: createUserResponseBody.hash,
       created_at: createUserResponseBody.created_at,
       updated_at: activatedUser.updated_at.toISOString(),
     });

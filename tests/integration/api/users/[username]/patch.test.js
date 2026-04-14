@@ -178,9 +178,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: "Unique Username",
         username: "new-unique-username",
-        email: createdUser.email,
         features: ["create:session", "read:session", "update:user"],
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -260,9 +258,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: "New Name",
         username: "name",
-        email: createdUser.email,
         features: ["create:session", "read:session", "update:user"],
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -303,9 +299,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: createdUser.name,
         username: createdUser.username,
-        email: createdUser.email,
         features: ["create:session", "read:session", "update:user"],
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -361,9 +355,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: "Same Username",
         username: "Same-Username",
-        email: createdUser.email,
         features: ["create:session", "read:session", "update:user"],
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -404,9 +396,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: createdUser.name,
         username: createdUser.username,
-        email: "newuniqueemail@example.com",
         features: ["create:session", "read:session", "update:user"],
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -447,9 +437,7 @@ describe("PATCH /api/users/[username]", () => {
         id: responseBody.id,
         name: createdUser.name,
         username: createdUser.username,
-        email: "SameEmail@example.com",
         features: ["create:session", "read:session", "update:user"],
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -501,9 +489,7 @@ describe("PATCH /api/users/[username]", () => {
         id: defaultUser.id,
         name: defaultUser.name,
         username: "changed-by-privileged-user",
-        email: defaultUser.email,
         features: defaultUser.features,
-        hash: responseBody.hash,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });

@@ -2,14 +2,19 @@ import { createRouter } from "next-connect";
 import postgres from "infra/postgres";
 import mongo from "infra/mongo";
 import controller from "infra/controller";
+import authorization from "models/authorization";
 
 const router = createRouter();
+
+router.use(controller.injectAnonymousOrAuthenticatedUser);
 
 router.get(getHandler);
 
 export default router.handler(controller.errorHandlers);
 
 async function getHandler(request, response) {
+  const userTryingToGet = request.context.user;
+
   const updatedAt = new Date().toISOString();
 
   // Postgres Status
@@ -32,7 +37,7 @@ async function getHandler(request, response) {
   const maxMongoConnections =
     mongoStatus.connections.current + mongoStatus.connections.available;
 
-  response.status(200).json({
+  const statusObject = {
     updated_at: updatedAt,
     dependencies: {
       postgres: {
@@ -50,5 +55,13 @@ async function getHandler(request, response) {
         version: mongoVersion,
       },
     },
-  });
+  };
+
+  const secureOutputValues = authorization.filterOutput(
+    userTryingToGet,
+    "read:status",
+    statusObject,
+  );
+
+  response.status(200).json(secureOutputValues);
 }

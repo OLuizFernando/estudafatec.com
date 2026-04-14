@@ -58,7 +58,6 @@ describe("GET /api/user", () => {
         username: "user-with-valid-session",
         email: createdUser.email,
         features: ["create:session", "read:session", "update:user"],
-        hash: createdUser.hash,
         created_at: createdUser.created_at.toISOString(),
         updated_at: activatedUser.updated_at.toISOString(),
       });
@@ -124,7 +123,6 @@ describe("GET /api/user", () => {
         username: "user-with-mid-lifetime-session",
         email: createdUser.email,
         features: ["create:session", "read:session", "update:user"],
-        hash: createdUser.hash,
         created_at: createdUser.created_at.toISOString(),
         updated_at: activatedUser.updated_at.toISOString(),
       });
