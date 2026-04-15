@@ -30,7 +30,7 @@
     "dotenv": "^16.5.0",
     "dotenv-expand": "^11.0.7",
     "mongodb": "^6.16.0",
-    "next": "^15.0.2",
+    "next": "15.0.7",
     "next-connect": "^1.0.0",
     "node": "^18.18.0",
     "node-pg-migrate": "^7.9.1",
