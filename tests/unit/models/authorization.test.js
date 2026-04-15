@@ -1,7 +1,5 @@
 import authorization from "models/authorization";
 import { InternalServerError } from "infra/errors";
-import { features } from "node:process";
-import { password } from "pg/lib/defaults.js";
 
 describe("models/authorization.js", () => {
   describe(".can()", () => {
