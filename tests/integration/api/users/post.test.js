@@ -32,8 +32,7 @@ describe("POST /api/users", () => {
         id: responseBody.id,
         name: "Luiz Fernando",
         username: "luiz-fernando",
-        email: "luizfernando@example.com",
-        hash: responseBody.hash,
+        features: ["read:activation_token"],
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -132,6 +131,38 @@ describe("POST /api/users", () => {
       const response2Body = await response2.json();
 
       expect(response2Body.username).toEqual("duplicated-name-1");
+    });
+  });
+
+  describe("Default user", () => {
+    test("With unique and valid data", async () => {
+      const createdUser = await orchestrator.createUser();
+      await orchestrator.activateUser(createdUser);
+      const sessionObject = await orchestrator.createSession(createdUser.id);
+
+      const response = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: {
+          Cookie: `session_id=${sessionObject.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: "Default User",
+          email: "defaultuser@example.com",
+          password: "password",
+        }),
+      });
+
+      expect(response.status).toBe(403);
+
+      const responseBody = await response.json();
+
+      expect(responseBody).toEqual({
+        name: "ForbiddenError",
+        message: "Você não possui permissão para realizar esta ação.",
+        action: 'Verifique se o seu usuário possui a feature "create:user".',
+        status_code: 403,
+      });
     });
   });
 });

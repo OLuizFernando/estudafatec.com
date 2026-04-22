@@ -10,11 +10,14 @@ async function create(userInputValues) {
 
   const generatedUsername = await username.generate(userInputValues.name);
 
+  const defaultFeatures = ["read:activation_token"];
+
   const newUser = await runInsertQuery({
     name: userInputValues.name,
     email: userInputValues.email,
     username: generatedUsername,
     hash,
+    defaultFeatures,
   });
   return newUser;
 
@@ -22,9 +25,9 @@ async function create(userInputValues) {
     const results = await postgres.query({
       text: `
         INSERT INTO
-          users (name, username, email, hash)
+          users (name, username, email, hash, features)
         VALUES
-          ($1, $2, $3, $4)
+          ($1, $2, $3, $4, $5)
         RETURNING
           *
         ;`,
@@ -33,6 +36,7 @@ async function create(userInputValues) {
         userInputValues.username,
         userInputValues.email,
         userInputValues.hash,
+        userInputValues.defaultFeatures,
       ],
     });
 
@@ -236,6 +240,56 @@ async function update(username, userInputValues) {
   }
 }
 
+async function setFeatures(userId, features) {
+  const updatedUser = await runUpdateQuery(userId, features);
+
+  return updatedUser;
+
+  async function runUpdateQuery(userId, features) {
+    const results = await postgres.query({
+      text: `
+        UPDATE
+          users
+        SET
+          features = $2,
+          updated_at = timezone('utc', now())
+        WHERE
+          id = $1
+        RETURNING
+          *
+        ;`,
+      values: [userId, features],
+    });
+
+    return results.rows[0];
+  }
+}
+
+async function addFeatures(userId, features) {
+  const updatedUser = await runUpdateQuery(userId, features);
+
+  return updatedUser;
+
+  async function runUpdateQuery(userId, features) {
+    const results = await postgres.query({
+      text: `
+        UPDATE
+          users
+        SET
+          features = array_cat(features, $2),
+          updated_at = timezone('utc', now())
+        WHERE
+          id = $1
+        RETURNING
+          *
+        ;`,
+      values: [userId, features],
+    });
+
+    return results.rows[0];
+  }
+}
+
 const user = {
   create,
   findOneById,
@@ -243,6 +297,8 @@ const user = {
   findOneByEmail,
   hashPassword,
   update,
+  setFeatures,
+  addFeatures,
 };
 
 export default user;
