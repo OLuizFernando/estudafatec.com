@@ -109,7 +109,7 @@ describe("PATCH /api/users/[username]", () => {
       });
     });
 
-    test("With `userB` targeting `userA`", async () => {
+    test("With userB targeting userA", async () => {
       const createdUserA = await orchestrator.createUser({
         name: "User A",
       });
@@ -451,7 +451,7 @@ describe("PATCH /api/users/[username]", () => {
   });
 
   describe("Privileged user", () => {
-    test("With `update:user:others` targeting `defaultUser`", async () => {
+    test("With update:user:others targeting defaultUser", async () => {
       const privilegedUser = await orchestrator.createUser();
 
       const activatedPrivilegedUser =

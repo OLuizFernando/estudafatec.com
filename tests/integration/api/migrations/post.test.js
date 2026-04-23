@@ -53,7 +53,7 @@ describe("POST /api/migrations", () => {
   });
 
   describe("Privileged user", () => {
-    test("With `create:migration`", async () => {
+    test("With create:migration", async () => {
       const createdUser = await orchestrator.createUser();
       const activatedUser = await orchestrator.activateUser(createdUser);
       await orchestrator.addFeaturesToUser(activatedUser, ["create:migration"]);
