@@ -17,7 +17,7 @@ describe("Use case: Registration Flow (all successful)", () => {
   let createSessionResponseBody;
 
   test("Create user account", async () => {
-    const createUserResponse = await fetch("http://localhost:3000/api/users", {
+    const createUserResponse = await fetch(`${webserver.origin}/api/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ describe("Use case: Registration Flow (all successful)", () => {
 
   test("Activate account", async () => {
     const activationResponse = await fetch(
-      `http://localhost:3000/api/activations/${activationTokenId}`,
+      `${webserver.origin}/api/activations/${activationTokenId}`,
       {
         method: "PATCH",
       },
@@ -89,7 +89,7 @@ describe("Use case: Registration Flow (all successful)", () => {
 
   test("Login", async () => {
     const createSessionResponse = await fetch(
-      "http://localhost:3000/api/sessions",
+      `${webserver.origin}/api/sessions`,
       {
         method: "POST",
         headers: {
@@ -111,7 +111,7 @@ describe("Use case: Registration Flow (all successful)", () => {
 
   test("Activate account again", async () => {
     const reactivationResponse = await fetch(
-      `http://localhost:3000/api/activations/${activationTokenId}`,
+      `${webserver.origin}/api/activations/${activationTokenId}`,
       {
         method: "PATCH",
         headers: {
@@ -135,7 +135,7 @@ describe("Use case: Registration Flow (all successful)", () => {
 
   test("Get user information", async () => {
     const userInformationResponse = await fetch(
-      "http://localhost:3000/api/user",
+      `${webserver.origin}/api/user`,
       {
         method: "GET",
         headers: {

@@ -2,6 +2,7 @@ import { version as uuidVersion } from "uuid";
 import setCookieParser from "set-cookie-parser";
 import orchestrator from "tests/orchestrator";
 import session from "models/session";
+import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -12,7 +13,7 @@ beforeAll(async () => {
 describe("GET /api/user", () => {
   describe("Anonymous user", () => {
     test("Retrieving the endpoint", async () => {
-      const response = await fetch("http://localhost:3000/api/user");
+      const response = await fetch(`${webserver.origin}/api/user`);
 
       expect(response.status).toBe(403);
 
@@ -37,7 +38,7 @@ describe("GET /api/user", () => {
 
       const sessionObject = await orchestrator.createSession(createdUser.id);
 
-      const response = await fetch("http://localhost:3000/api/user", {
+      const response = await fetch(`${webserver.origin}/api/user`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
@@ -107,7 +108,7 @@ describe("GET /api/user", () => {
 
       jest.useRealTimers();
 
-      const response = await fetch("http://localhost:3000/api/user", {
+      const response = await fetch(`${webserver.origin}/api/user`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
@@ -161,7 +162,7 @@ describe("GET /api/user", () => {
       const nonexistentToken =
         "be0ca7caaf45c28a617e29d39cfc10e7b55d7dd2e3f1c9c97a8096db28e86fd5cef27a1bfb88b880136fbc0fe2d9ab95";
 
-      const response = await fetch("http://localhost:3000/api/user", {
+      const response = await fetch(`${webserver.origin}/api/user`, {
         headers: {
           Cookie: `session_id=${nonexistentToken}`,
         },
@@ -205,7 +206,7 @@ describe("GET /api/user", () => {
 
       jest.useRealTimers();
 
-      const response = await fetch("http://localhost:3000/api/user", {
+      const response = await fetch(`${webserver.origin}/api/user`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },

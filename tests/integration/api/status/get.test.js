@@ -1,4 +1,5 @@
 import orchestrator from "tests/orchestrator";
+import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -9,7 +10,7 @@ beforeAll(async () => {
 describe("GET /api/status", () => {
   describe("Anonymous user", () => {
     test("Retrieving current system status", async () => {
-      const response = await fetch("http://localhost:3000/api/status");
+      const response = await fetch(`${webserver.origin}/api/status`);
 
       expect(response.status).toBe(200);
 
@@ -52,7 +53,7 @@ describe("GET /api/status", () => {
       await orchestrator.activateUser(createdUser);
       const sessionObject = await orchestrator.createSession(createdUser.id);
 
-      const response = await fetch("http://localhost:3000/api/status", {
+      const response = await fetch(`${webserver.origin}/api/status`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
@@ -100,7 +101,7 @@ describe("GET /api/status", () => {
       await orchestrator.addFeaturesToUser(activatedUser, ["read:status:all"]);
       const sessionObject = await orchestrator.createSession(activatedUser.id);
 
-      const response = await fetch("http://localhost:3000/api/status", {
+      const response = await fetch(`${webserver.origin}/api/status`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
