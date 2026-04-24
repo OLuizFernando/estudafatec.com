@@ -407,6 +407,12 @@ describe("PATCH /api/users/[username]", () => {
       expect(Date.parse(responseBody.updated_at)).not.toBeNaN();
 
       expect(responseBody.updated_at > responseBody.created_at).toBe(true);
+
+      const userInDatabase = await user.findOneByEmail(
+        "newuniqueemail@example.com",
+      );
+
+      expect(userInDatabase.email).toBe("newuniqueemail@example.com");
     });
 
     test("With same email", async () => {
