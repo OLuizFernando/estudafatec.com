@@ -152,10 +152,11 @@ function QuestionCard(props) {
           ))}
           {question.imagens
             ? question.imagens.map((imagem, index) => (
-                <img
+                <Image
                   className="max-h-125 max-w-fit mb-5"
                   src={imagem}
                   key={index}
+                  alt=""
                 />
               ))
             : ""}
@@ -172,7 +173,11 @@ function QuestionCard(props) {
                 <span className="opacity-75 me-2">{alternative.letra})</span>
                 {alternative.texto}
                 {alternative.imagem ? (
-                  <img className="max-h-50 max-w-50" src={alternative.imagem} />
+                  <Image
+                    className="max-h-50 max-w-50"
+                    src={alternative.imagem}
+                    alt=""
+                  />
                 ) : (
                   ""
                 )}
