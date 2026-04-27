@@ -1,4 +1,5 @@
 import orchestrator from "tests/orchestrator";
+import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -7,7 +8,7 @@ beforeAll(async () => {
 describe("GET /api/questoes", () => {
   describe("Anonymous user", () => {
     test("Retrieving all questions", async () => {
-      const response = await fetch("http://localhost:3000/api/questoes");
+      const response = await fetch(`${webserver.origin}/api/questoes`);
       expect(response.status).toBe(200);
 
       const responseBody = await response.json();
@@ -17,7 +18,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving questions of a specific exam", async () => {
       const response = await fetch(
-        "http://localhost:3000/api/questoes?ano=2024&semestre=2",
+        `${webserver.origin}/api/questoes?ano=2024&semestre=2`,
       );
       expect(response.status).toBe(200);
 
@@ -28,7 +29,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving a specific question", async () => {
       const response = await fetch(
-        "http://localhost:3000/api/questoes?ano=2024&semestre=2&numero=1",
+        `${webserver.origin}/api/questoes?ano=2024&semestre=2&numero=1`,
       );
       expect(response.status).toBe(200);
 
@@ -39,7 +40,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving a non-existent question", async () => {
       const response = await fetch(
-        "http://localhost:3000/api/questoes?ano=0&semestre=0&numero=0",
+        `${webserver.origin}/api/questoes?ano=0&semestre=0&numero=0`,
       );
       expect(response.status).toBe(200);
 
@@ -51,7 +52,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving questions with invalid parameters", async () => {
       const response = await fetch(
-        "http://localhost:3000/api/questoes?invalid=parameter",
+        `${webserver.origin}/api/questoes?invalid=parameter`,
       );
       expect(response.status).toBe(400);
 

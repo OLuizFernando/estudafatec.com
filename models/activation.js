@@ -35,7 +35,7 @@ async function sendEmailToUser(user, activationToken) {
     from: "EstudaFatec.com <contato@estudafatec.com>",
     to: user.email,
     subject: "Ative seu cadastro no EstudaFatec.com!",
-    text: `${user.name}, clique no link abaixo parra ativar seu cadastro no EstudaFatec.com:
+    text: `${user.name}, clique no link abaixo para ativar seu cadastro no EstudaFatec.com:
     
 ${webserver.origin}/register/activation/${activationToken.id}
 

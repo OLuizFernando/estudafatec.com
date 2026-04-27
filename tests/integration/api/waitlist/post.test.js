@@ -1,5 +1,6 @@
 import { version as uuidVersion } from "uuid";
 import orchestrator from "tests/orchestrator";
+import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -10,7 +11,7 @@ beforeAll(async () => {
 describe("POST /api/waitlist", () => {
   describe("Anonymous user", () => {
     test("With unique and valid data", async () => {
-      const response = await fetch("http://localhost:3000/api/waitlist", {
+      const response = await fetch(`${webserver.origin}/api/waitlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +38,7 @@ describe("POST /api/waitlist", () => {
     });
 
     test("Without name", async () => {
-      const response = await fetch("http://localhost:3000/api/waitlist", {
+      const response = await fetch(`${webserver.origin}/api/waitlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +64,7 @@ describe("POST /api/waitlist", () => {
     });
 
     test("With duplicated email", async () => {
-      const response1 = await fetch("http://localhost:3000/api/waitlist", {
+      const response1 = await fetch(`${webserver.origin}/api/waitlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +77,7 @@ describe("POST /api/waitlist", () => {
 
       expect(response1.status).toBe(201);
 
-      const response2 = await fetch("http://localhost:3000/api/waitlist", {
+      const response2 = await fetch(`${webserver.origin}/api/waitlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

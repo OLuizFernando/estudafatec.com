@@ -1,4 +1,5 @@
 import orchestrator from "tests/orchestrator";
+import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -9,7 +10,7 @@ beforeAll(async () => {
 describe("GET /api/status", () => {
   describe("Anonymous user", () => {
     test("Retrieving current system status", async () => {
-      const response = await fetch("http://localhost:3000/api/status");
+      const response = await fetch(`${webserver.origin}/api/status`);
 
       expect(response.status).toBe(200);
 
@@ -39,7 +40,7 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeUndefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(500);
+      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         1000,
       );
@@ -50,9 +51,9 @@ describe("GET /api/status", () => {
     test("Retrieving current system status", async () => {
       const createdUser = await orchestrator.createUser();
       await orchestrator.activateUser(createdUser);
-      const sessionObject = await orchestrator.createSession(createdUser.id);
+      const sessionObject = await orchestrator.createSession(createdUser);
 
-      const response = await fetch("http://localhost:3000/api/status", {
+      const response = await fetch(`${webserver.origin}/api/status`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
@@ -86,7 +87,7 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeUndefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(500);
+      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         1000,
       );
@@ -94,13 +95,13 @@ describe("GET /api/status", () => {
   });
 
   describe("Privileged user", () => {
-    test("With `read:status:all`", async () => {
+    test("With read:status:all", async () => {
       const createdUser = await orchestrator.createUser();
       const activatedUser = await orchestrator.activateUser(createdUser);
       await orchestrator.addFeaturesToUser(activatedUser, ["read:status:all"]);
-      const sessionObject = await orchestrator.createSession(activatedUser.id);
+      const sessionObject = await orchestrator.createSession(activatedUser);
 
-      const response = await fetch("http://localhost:3000/api/status", {
+      const response = await fetch(`${webserver.origin}/api/status`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
@@ -135,7 +136,7 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeDefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(500);
+      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         1000,
       );

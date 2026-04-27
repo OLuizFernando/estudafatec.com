@@ -1,4 +1,5 @@
 import orchestrator from "tests/orchestrator";
+import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -9,7 +10,7 @@ beforeAll(async () => {
 describe("GET /api/migrations", () => {
   describe("Anonymous user", () => {
     test("Retrieving pending migrations", async () => {
-      const response = await fetch("http://localhost:3000/api/migrations");
+      const response = await fetch(`${webserver.origin}/api/migrations`);
       expect(response.status).toBe(403);
 
       const respondeBody = await response.json();
@@ -27,9 +28,9 @@ describe("GET /api/migrations", () => {
     test("Retrieving pending migrations", async () => {
       const createdUser = await orchestrator.createUser();
       const activatedUser = await orchestrator.activateUser(createdUser);
-      const sessionObject = await orchestrator.createSession(activatedUser.id);
+      const sessionObject = await orchestrator.createSession(activatedUser);
 
-      const response = await fetch("http://localhost:3000/api/migrations", {
+      const response = await fetch(`${webserver.origin}/api/migrations`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },
@@ -49,13 +50,13 @@ describe("GET /api/migrations", () => {
   });
 
   describe("Privileged user", () => {
-    test("With `read:migration`", async () => {
+    test("With read:migration", async () => {
       const createdUser = await orchestrator.createUser();
       const activatedUser = await orchestrator.activateUser(createdUser);
       await orchestrator.addFeaturesToUser(activatedUser, ["read:migration"]);
-      const sessionObject = await orchestrator.createSession(activatedUser.id);
+      const sessionObject = await orchestrator.createSession(activatedUser);
 
-      const response = await fetch("http://localhost:3000/api/migrations", {
+      const response = await fetch(`${webserver.origin}/api/migrations`, {
         headers: {
           Cookie: `session_id=${sessionObject.token}`,
         },

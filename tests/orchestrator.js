@@ -1,11 +1,12 @@
 import retry from "async-retry";
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 
 import postgres from "infra/postgres";
 import migrator from "models/migrator";
 import user from "models/user";
 import session from "models/session";
 import activation from "models/activation";
+import webserver from "infra/webserver";
 
 const emailHttpUrl = `http://${process.env.EMAIL_HTTP_HOST}:${process.env.EMAIL_HTTP_PORT}`;
 
@@ -19,7 +20,7 @@ async function waitForAllServices() {
     });
 
     async function fetchStatusPage() {
-      const response = await fetch("http://localhost:3000/api/status");
+      const response = await fetch(`${webserver.origin}/api/status`);
 
       if (response.status !== 200) {
         throw Error();
@@ -63,8 +64,8 @@ async function activateUser(inactiveUser) {
   return activatedUser;
 }
 
-async function createSession(userId) {
-  return await session.create(userId);
+async function createSession(userObject) {
+  return await session.create(userObject.id);
 }
 
 async function deleteAllEmails() {
