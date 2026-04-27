@@ -1,5 +1,5 @@
 import retry from "async-retry";
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 
 import postgres from "infra/postgres";
 import migrator from "models/migrator";
