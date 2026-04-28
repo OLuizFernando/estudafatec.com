@@ -10,7 +10,7 @@ export default function Questoes() {
 
   const buildApiUrl = () => {
     const queryString = searchParams.toString();
-    return `/api/questoes${queryString ? `?${queryString}` : ""}`;
+    return `/api/questions${queryString ? `?${queryString}` : ""}`;
   };
 
   const apiUrl = buildApiUrl();
@@ -152,11 +152,10 @@ function QuestionCard(props) {
           ))}
           {question.imagens
             ? question.imagens.map((imagem, index) => (
-                <Image
+                <img
                   className="max-h-125 max-w-fit mb-5"
                   src={imagem}
                   key={index}
-                  alt=""
                 />
               ))
             : ""}
@@ -173,11 +172,7 @@ function QuestionCard(props) {
                 <span className="opacity-75 me-2">{alternative.letra})</span>
                 {alternative.texto}
                 {alternative.imagem ? (
-                  <Image
-                    className="max-h-50 max-w-50"
-                    src={alternative.imagem}
-                    alt=""
-                  />
+                  <img className="max-h-50 max-w-50" src={alternative.imagem} />
                 ) : (
                   ""
                 )}
