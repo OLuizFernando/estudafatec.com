@@ -1,4 +1,4 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from "mongodb";
 import { ServiceError } from "./errors.js";
 
 let cachedClient = null;
@@ -10,13 +10,7 @@ async function getDb() {
   }
 
   try {
-    const client = new MongoClient(process.env.MONGODB_URI, {
-      serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-      },
-    });
+    const client = new MongoClient(process.env.MONGODB_URI);
 
     await client.connect();
     const db = client.db("api-estudafatec");
@@ -33,6 +27,14 @@ async function getDb() {
   }
 }
 
+async function closeDb() {
+  if (cachedClient) {
+    await cachedClient.close();
+    cachedClient = null;
+    cachedDb = null;
+  }
+}
+
 async function query(queryObject) {
   try {
     const db = await getDb();
@@ -46,9 +48,44 @@ async function query(queryObject) {
   }
 }
 
+async function insertMany(documents) {
+  try {
+    const db = await getDb();
+    const collection = db.collection("questoes");
+
+    const result = await collection.insertMany(documents);
+
+    return result;
+  } catch (error) {
+    throw new ServiceError({
+      message: "Erro ao inserir documentos no MongoDB.",
+      cause: error,
+    });
+  }
+}
+
+async function deleteMany(filter) {
+  try {
+    const db = await getDb();
+    const collection = db.collection("questoes");
+
+    const result = await collection.deleteMany(filter);
+
+    return result;
+  } catch (error) {
+    throw new ServiceError({
+      message: "Erro ao remover documentos no MongoDB.",
+      cause: error,
+    });
+  }
+}
+
 const mongo = {
-  query,
   getDb,
+  query,
+  insertMany,
+  deleteMany,
+  closeDb,
 };
 
 export default mongo;

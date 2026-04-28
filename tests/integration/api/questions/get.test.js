@@ -3,6 +3,8 @@ import webserver from "infra/webserver";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
+  await orchestrator.clearQuestions();
+  await orchestrator.populateQuestions();
 });
 
 describe("GET /api/questions", () => {
@@ -13,23 +15,23 @@ describe("GET /api/questions", () => {
 
       const responseBody = await response.json();
 
-      expect(Object.keys(responseBody).length).toBeGreaterThan(0);
+      expect(Object.keys(responseBody).length).toBe(2);
     });
 
     test("Retrieving questions of a specific exam", async () => {
       const response = await fetch(
-        `${webserver.origin}/api/questions?year=2024&semester=2`,
+        `${webserver.origin}/api/questions?year=2024&semester=1`,
       );
       expect(response.status).toBe(200);
 
       const responseBody = await response.json();
 
-      expect(Object.keys(responseBody).length).toBe(54);
+      expect(Object.keys(responseBody).length).toBe(1);
     });
 
     test("Retrieving a specific question", async () => {
       const response = await fetch(
-        `${webserver.origin}/api/questions?year=2024&semester=2&number=1`,
+        `${webserver.origin}/api/questions?year=2025&semester=1&number=1`,
       );
       expect(response.status).toBe(200);
 

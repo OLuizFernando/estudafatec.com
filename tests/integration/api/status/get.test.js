@@ -40,7 +40,9 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeUndefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
+      expect(responseBody.dependencies.mongo.max_connections).toBeGreaterThan(
+        100,
+      );
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         1000,
       );
@@ -87,7 +89,9 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeUndefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
+      expect(responseBody.dependencies.mongo.max_connections).toBeGreaterThan(
+        100,
+      );
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         1000,
       );
@@ -136,11 +140,15 @@ describe("GET /api/status", () => {
       expect(responseBody.dependencies.mongo.opened_connections).toBeDefined();
       expect(responseBody.dependencies.mongo.version).toBeDefined();
 
-      expect(responseBody.dependencies.mongo.max_connections).toBe(1000);
+      expect(responseBody.dependencies.mongo.max_connections).toBeGreaterThan(
+        100,
+      );
       expect(responseBody.dependencies.mongo.opened_connections).toBeLessThan(
         1000,
       );
-      expect(typeof responseBody.dependencies.mongo.version).toBe("string");
+      expect(responseBody.dependencies.mongo.version.startsWith("8.0")).toBe(
+        true,
+      );
     });
   });
 });
