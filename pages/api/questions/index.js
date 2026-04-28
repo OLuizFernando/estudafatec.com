@@ -5,6 +5,6 @@ import questions from "models/questions";
 export default createRouter().get(getHandler).handler(controller.errorHandlers);
 
 async function getHandler(request, response) {
-  const provasFound = await questions.filter(request.query);
-  response.status(200).json(provasFound);
+  const examsFound = await questions.filter(request.query);
+  response.status(200).json(examsFound);
 }

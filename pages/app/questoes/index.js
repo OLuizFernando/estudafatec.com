@@ -10,7 +10,7 @@ export default function Questoes() {
 
   const buildApiUrl = () => {
     const queryString = searchParams.toString();
-    return `/api/questoes${queryString ? `?${queryString}` : ""}`;
+    return `/api/questions${queryString ? `?${queryString}` : ""}`;
   };
 
   const apiUrl = buildApiUrl();

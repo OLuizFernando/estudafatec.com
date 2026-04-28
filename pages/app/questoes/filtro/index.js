@@ -3,16 +3,16 @@ import AppNavbar from "components/AppNavbar";
 import Link from "next/link";
 
 function Filtro() {
-  const [disciplina, setDisciplina] = useState("");
-  const [ano, setAno] = useState("");
-  const [semestre, setSemestre] = useState("");
+  const [subject, setSubject] = useState("");
+  const [year, setYear] = useState("");
+  const [semester, setSemester] = useState("");
 
   const buildUrl = () => {
     const params = new URLSearchParams();
 
-    if (disciplina) params.append("disciplina", disciplina);
-    if (ano) params.append("ano", ano);
-    if (semestre) params.append("semestre", semestre);
+    if (subject) params.append("subject", subject);
+    if (year) params.append("year", year);
+    if (semester) params.append("semester", semester);
 
     const queryString = params.toString();
     return `/app/questoes${queryString ? `?${queryString}` : ""}`;
@@ -30,15 +30,15 @@ function Filtro() {
             <form className="flex flex-col w-full">
               <div className="mb-5">
                 <label
-                  htmlFor="disciplina-select"
+                  htmlFor="subject-select"
                   className="block mb-1 ps-1 text-lg font-medium text-[#2e2e2e]"
                 >
                   Disciplina
                 </label>
                 <select
-                  id="disciplina-select"
-                  value={disciplina}
-                  onChange={(e) => setDisciplina(e.target.value)}
+                  id="subject-select"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   className="border shadow-md border-gray-300 text-[#2e2e2e] rounded-lg focus:ring-2 focus:ring-[#922020]/25 focus:border-[#922020]/25 w-full p-3"
                 >
                   <option value="">Todas Disciplinas</option>
@@ -56,15 +56,15 @@ function Filtro() {
               </div>
               <div className="mb-5">
                 <label
-                  htmlFor="ano-select"
+                  htmlFor="year-select"
                   className="block mb-1 ps-1 text-lg font-medium text-[#2e2e2e]"
                 >
                   Ano
                 </label>
                 <select
-                  id="ano-select"
-                  value={ano}
-                  onChange={(e) => setAno(e.target.value)}
+                  id="year-select"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
                   className="border shadow-md border-gray-300 text-[#2e2e2e] rounded-lg focus:ring-2 focus:ring-[#922020]/25 focus:border-[#922020]/25 w-full p-3"
                 >
                   <option value="">Todos Anos</option>
@@ -82,15 +82,15 @@ function Filtro() {
               </div>
               <div className="mb-5">
                 <label
-                  htmlFor="semestre-select"
+                  htmlFor="semester-select"
                   className="block mb-1 ps-1 text-lg font-medium text-[#2e2e2e]"
                 >
                   Semestre
                 </label>
                 <select
-                  id="semestre-select"
-                  value={semestre}
-                  onChange={(e) => setSemestre(e.target.value)}
+                  id="semester-select"
+                  value={semester}
+                  onChange={(e) => setSemester(e.target.value)}
                   className="border shadow-md border-gray-300 text-[#2e2e2e] rounded-lg focus:ring-2 focus:ring-[#922020]/25 focus:border-[#922020]/25 w-full p-3"
                 >
                   <option value="">Todos Semestres</option>

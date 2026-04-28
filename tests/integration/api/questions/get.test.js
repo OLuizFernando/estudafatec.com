@@ -5,10 +5,10 @@ beforeAll(async () => {
   await orchestrator.waitForAllServices();
 });
 
-describe("GET /api/questoes", () => {
+describe("GET /api/questions", () => {
   describe("Anonymous user", () => {
     test("Retrieving all questions", async () => {
-      const response = await fetch(`${webserver.origin}/api/questoes`);
+      const response = await fetch(`${webserver.origin}/api/questions`);
       expect(response.status).toBe(200);
 
       const responseBody = await response.json();
@@ -18,7 +18,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving questions of a specific exam", async () => {
       const response = await fetch(
-        `${webserver.origin}/api/questoes?ano=2024&semestre=2`,
+        `${webserver.origin}/api/questions?year=2024&semester=2`,
       );
       expect(response.status).toBe(200);
 
@@ -29,7 +29,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving a specific question", async () => {
       const response = await fetch(
-        `${webserver.origin}/api/questoes?ano=2024&semestre=2&numero=1`,
+        `${webserver.origin}/api/questions?year=2024&semester=2&number=1`,
       );
       expect(response.status).toBe(200);
 
@@ -40,7 +40,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving a non-existent question", async () => {
       const response = await fetch(
-        `${webserver.origin}/api/questoes?ano=0&semestre=0&numero=0`,
+        `${webserver.origin}/api/questions?year=0&semester=0&number=0`,
       );
       expect(response.status).toBe(200);
 
@@ -52,7 +52,7 @@ describe("GET /api/questoes", () => {
 
     test("Retrieving questions with invalid parameters", async () => {
       const response = await fetch(
-        `${webserver.origin}/api/questoes?invalid=parameter`,
+        `${webserver.origin}/api/questions?invalid=parameter`,
       );
       expect(response.status).toBe(400);
 
@@ -62,7 +62,7 @@ describe("GET /api/questoes", () => {
         name: "ValidationError",
         message: "Parâmetros inválidos detectados: invalid.",
         action:
-          "Use apenas parâmetros permitidos: ano, semestre, numero, disciplina.",
+          "Use apenas parâmetros permitidos: year, semester, number, subject.",
         status_code: 400,
       });
     });
